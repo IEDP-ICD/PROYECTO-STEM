@@ -1,0 +1,38 @@
+[
+  {
+    "nombre": "Robot seguidor de línea",
+    "area": "Robótica",
+    "descripcion": "Robot autónomo construido con Arduino Uno que sigue una línea negra usando sensores infrarrojos. Desarrollado por estudiantes de grado 10° como proyecto final de electrónica.",
+    "anio": "2025",
+    "grado": "10°",
+    "imagen": "robot-linea.jpg",
+    "icono": "🤖"
+  },
+  {
+    "nombre": "Maqueta arquitectónica en 3D",
+    "area": "Impresión 3D",
+    "descripcion": "Maqueta a escala de la institución educativa diseñada en Tinkercad e impresa en PLA. Primer proyecto de impresión 3D realizado en el colegio.",
+    "anio": "2024",
+    "grado": "11°",
+    "imagen": "maqueta-3d.jpg",
+    "icono": "🖨️"
+  },
+  {
+    "nombre": "Llaveros y figuras en cortadora láser",
+    "area": "Cortadora Láser",
+    "descripcion": "Diseños personalizados cortados en MDF usando la cortadora láser CO₂. Proyecto que combina diseño digital con fabricación de piezas reales.",
+    "anio": "2025",
+    "grado": "9°",
+    "imagen": "laser-llaveros.jpg",
+    "icono": "🔬"
+  },
+  {
+    "nombre": "Semáforo con Arduino",
+    "area": "Electrónica",
+    "descripcion": "Sistema de semáforo funcional programado con Arduino, LEDs y resistencias. Proyecto de introducción a la programación de microcontroladores.",
+    "anio": "2024",
+    "grado": "8°",
+    "imagen": "semaforo-arduino.jpg",
+    "icono": "⚡"
+  }
+]
