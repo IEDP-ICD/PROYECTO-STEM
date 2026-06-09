@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "Feria de Ciencias 2025",
+    "categoria": "Ferias",
+    "archivo": "feria-2025-01.jpg"
+  },
+  {
+    "nombre": "Taller de robótica con Arduino",
+    "categoria": "Robótica",
+    "archivo": "taller-robotica.jpg"
+  },
+  {
+    "nombre": "Proceso de impresión 3D",
+    "categoria": "Impresión 3D",
+    "archivo": "impresion-proceso.jpg"
+  },
+  {
+    "nombre": "Cortadora láser CO₂ en acción",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-accion.jpg"
+  },
+  {
+    "nombre": "Exposición de proyectos electrónicos",
+    "categoria": "Ferias",
+    "archivo": "exposicion-electronica.jpg"
+  },
+  {
+    "nombre": "Estudiantes programando con Arduino",
+    "categoria": "Electrónica",
+    "archivo": "arduino-programacion.jpg"
+  }
+]
