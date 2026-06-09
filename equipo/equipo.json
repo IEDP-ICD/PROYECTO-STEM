@@ -4,8 +4,8 @@
   "sobre_nosotros": "Somos tres estudiantes de la Institución Educativa La Divina Pastora apasionadas por la tecnología. Nuestro proyecto nació de la necesidad de documentar y darle visibilidad a todo lo increíble que se hace en nuestro colegio: robots, impresiones 3D, corte láser, electrónica y mucho más.",
   "estadisticas": [
     {
-      "num": "12+",
-      "label": "Proyectos"
+      "num": "100",
+      "label": "Figuritas"
     },
     {
       "num": "3",
@@ -22,19 +22,19 @@
   ],
   "integrantes": [
     {
-      "nombre": "Nombre Apellido",
+      "nombre": "Nailis Rodriguez",
       "rol": "Documentación y contenido",
       "descripcion": "Encargada de registrar en fotos y video todas las actividades STEM del colegio y redactar las descripciones de cada proyecto.",
       "foto": "integrante1.jpg"
     },
     {
-      "nombre": "Nombre Apellido",
+      "nombre": "Lina Duarte",
       "rol": "Diseño y redes sociales",
       "descripcion": "Gestiona la identidad visual del proyecto, las publicaciones en redes y la edición de videos para el canal de difusión.",
       "foto": "integrante2.jpg"
     },
     {
-      "nombre": "Nombre Apellido",
+      "nombre": "Genessis Cassiani",
       "rol": "Investigación y redacción",
       "descripcion": "Investiga el contexto de cada proyecto STEM, entrevista a los estudiantes que los desarrollan y redacta los textos del sitio.",
       "foto": "integrante3.jpg"
