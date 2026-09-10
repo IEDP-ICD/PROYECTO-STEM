@@ -18,12 +18,10 @@
   ║  │   ├── galeria.json         ← fotos de eventos y ferias   ║
   ║  │   └── (fotos JPG/PNG)                                     ║
   ║  ├── videos/                                                 ║
-  ║  │   └── videos.json          ← links de YouTube            ║
-  ║  ├── equipo/                                                 ║
-  ║  │   ├── equipo.json          ← misión, visión e integrantes║
-  ║  │   └── (fotos del equipo)                                  ║
-  ║  └── categorias/                                             ║
-  ║      └── categorias.json      ← áreas STEM del colegio      ║
+  ║  │   └── videos.json          ← links de TikTok/Instagram   ║
+  ║  └── equipo/                                                 ║
+  ║      ├── equipo.json          ← misión, visión e integrantes║
+  ║      └── (fotos del equipo)                                  ║
   ╚══════════════════════════════════════════════════════════════╝
 -->
 <html lang="es">
@@ -807,11 +805,14 @@
 
     /* ═══════════════════════════════════════════════════════════
        VIDEOS
-       Grid de videos de YouTube embebidos o en tarjetas
+       Grid de videos de Instagram y TikTok. Como ninguna de las dos
+       plataformas permite incrustar un reproductor en un sitio
+       estático sin backend, cada ficha es un enlace que abre el
+       video en su red de origen, con una miniatura y botón de play.
        ═══════════════════════════════════════════════════════════ */
     #videos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 24px;
     }
 
@@ -829,18 +830,64 @@
       box-shadow: var(--sombra-media);
     }
 
-    /* Contenedor del iframe de YouTube con proporción 16:9 */
-    .video-iframe-wrap {
-      aspect-ratio: 16 / 9;
+    /* Miniatura del video en proporción vertical (formato reel/tiktok) */
+    .video-miniatura-wrap {
+      aspect-ratio: 9 / 16;
       background: var(--texto-oscuro);
+      position: relative;
+      display: block;
     }
 
-    /* El iframe ocupa todo el contenedor */
-    .video-iframe-wrap iframe {
+    .video-miniatura-wrap img {
       width: 100%;
       height: 100%;
-      border: none;
+      object-fit: cover;
       display: block;
+    }
+
+    .video-miniatura-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .video-miniatura-placeholder.red-tiktok {
+      background: linear-gradient(135deg, #1c1c1e, #3a2a30);
+    }
+
+    .video-miniatura-placeholder.red-instagram {
+      background: linear-gradient(135deg, #4f5bd5, #962fbf, #d62976, #fa7e1e, #feda75);
+    }
+
+    /* Botón de play superpuesto a la miniatura */
+    .video-play-badge {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.15);
+      transition: background 0.3s;
+    }
+
+    .video-miniatura-wrap:hover .video-play-badge {
+      background: rgba(0,0,0,0.35);
+    }
+
+    .video-play-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--texto-oscuro);
+      box-shadow: var(--sombra-media);
     }
 
     /* Info del video debajo */
@@ -873,56 +920,6 @@
       font-size: 0.83rem;
       color: var(--gris-oscuro);
       font-weight: 300;
-    }
-
-    /* ═══════════════════════════════════════════════════════════
-       ÁREAS STEM DEL COLEGIO
-       Muestra las categorías o áreas del programa
-       ═══════════════════════════════════════════════════════════ */
-    #categorias-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    /* Tarjeta de área */
-    .categoria-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(0, 180, 216, 0.2);
-      border-radius: var(--radio-lg);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    }
-
-    .categoria-card:hover {
-      background: rgba(0, 180, 216, 0.08);
-      border-color: var(--cyan);
-      transform: translateY(-3px);
-    }
-
-    /* Ícono grande del área */
-    .categoria-icono {
-      font-size: 2.8rem;
-      display: block;
-      margin-bottom: 1rem;
-    }
-
-    /* Nombre del área */
-    .categoria-nombre {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--blanco);
-      margin-bottom: 6px;
-    }
-
-    /* Descripción del área */
-    .categoria-desc {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.5);
-      font-weight: 300;
-      line-height: 1.5;
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -1188,7 +1185,6 @@
       <li><a href="#proyectos">Proyectos</a></li>
       <li><a href="#galeria">Galería</a></li>
       <li><a href="#videos">Videos</a></li>
-      <li><a href="#areas">Áreas</a></li>
       <li><a href="#nosotros">Equipo</a></li>
     </ul>
   </nav>
@@ -1343,17 +1339,33 @@
   <!-- ═══════════════════════════════════════════════════════════
        SECCIÓN: VIDEOS
        Archivo: videos/videos.json
+       Cada video es de Instagram o de TikTok (no se maneja YouTube
+       en este proyecto). La ficha siempre abre el video en su red
+       de origen al hacer clic.
        Formato:
        [
          {
            "titulo": "Impresión 3D en acción",
            "categoria": "Impresión 3D",
+           "red": "TikTok",
            "descripcion": "Proceso completo de impresión de una pieza...",
-           "youtube_id": "CODIGO_DEL_VIDEO_EN_YOUTUBE"
+           "tiktok_url": "https://www.tiktok.com/@usuario/video/CODIGO_DEL_VIDEO"
+         },
+         {
+           "titulo": "Feria de ciencias 2025",
+           "categoria": "Ferias",
+           "red": "Instagram",
+           "descripcion": "Recorrido por los stands de la feria...",
+           "instagram_url": "https://www.instagram.com/reel/CODIGO_DEL_VIDEO/"
          },
          ...
        ]
-       El youtube_id está en la URL: youtube.com/watch?v=ESTE_CODIGO
+       Para TikTok, el código consulta la API pública oEmbed de TikTok
+       al cargar la página y reemplaza la miniatura y la descripción
+       por las reales del video (si TikTok no responde, se queda con
+       "descripcion"). Instagram ya no ofrece esa consulta pública sin
+       una cuenta de desarrollador de Meta, así que su ficha siempre
+       usa el título/descripción escritos aquí en el JSON.
        ═══════════════════════════════════════════════════════════ -->
   <section class="seccion seccion-oscura" id="videos">
     <div class="contenedor">
@@ -1365,41 +1377,6 @@
       <div id="videos-grid">
         <div class="skeleton-oscuro sk-alta"></div>
         <div class="skeleton-oscuro sk-alta"></div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════
-       SECCIÓN: ÁREAS STEM DEL COLEGIO
-       Archivo: categorias/categorias.json
-       Formato:
-       [
-         {
-           "nombre": "Robótica",
-           "icono": "🤖",
-           "descripcion": "Construcción y programación de robots con Arduino y sensores"
-         },
-         {
-           "nombre": "Impresión 3D",
-           "icono": "🖨️",
-           "descripcion": "Diseño y fabricación de piezas con impresoras 3D FDM"
-         },
-         ...
-       ]
-       ═══════════════════════════════════════════════════════════ -->
-  <section class="seccion seccion-blanca" id="areas">
-    <div class="contenedor">
-      <div class="seccion-header">
-        <p class="seccion-eyebrow">Nuestras herramientas</p>
-        <h2>Áreas STEM</h2>
-        <p>Las disciplinas y tecnologías que exploramos en nuestra institución</p>
-      </div>
-      <div id="categorias-grid">
-        <div class="skeleton sk-media" style="color: #000000 !important;"></div>
-        <div class="skeleton sk-media" style="color: #000000 !important;"></div>
-        <div class="skeleton sk-media" style="color: #000000 !important;"></div>
-        <div class="skeleton sk-media" style="color: #000000 !important;"></div>
       </div>
     </div>
   </section>
@@ -1469,8 +1446,7 @@
         cargarEquipoYMision(),
         cargarProyectos(),
         cargarGaleria(),
-        cargarVideos(),
-        cargarCategorias()
+        cargarVideos()
       ]);
     });
 
@@ -1695,7 +1671,9 @@
     /*
     ══════════════════════════════════════════════════════════════
     FUNCIÓN: cargarVideos
-    Lee videos/videos.json y embebe los videos de YouTube
+    Lee videos/videos.json y arma una ficha por video que enlaza a
+    Instagram o a TikTok (ninguna de las dos se puede incrustar como
+    reproductor en un sitio estático sin backend)
     ══════════════════════════════════════════════════════════════
     */
     async function cargarVideos() {
@@ -1710,24 +1688,32 @@
           return;
         }
 
-        grid.innerHTML = videos.map(v => `
-          <div class="video-card">
-            <div class="video-iframe-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/${v.youtube_id}"
-                title="${escHtml(v.titulo)}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                loading="lazy"
-              ></iframe>
+        grid.innerHTML = videos.map((v, i) => {
+          const esTikTok = !!v.tiktok_url;
+          const url = v.tiktok_url || v.instagram_url || '#';
+          const red = v.red || (esTikTok ? 'TikTok' : 'Instagram');
+          const icono = esTikTok ? '🎵' : '📸';
+          const claseRed = esTikTok ? 'red-tiktok' : 'red-instagram';
+
+          return `
+            <div class="video-card">
+              <a class="video-miniatura-wrap" href="${escHtml(url)}" target="_blank" rel="noopener noreferrer" aria-label="Ver en ${escHtml(red)}: ${escHtml(v.titulo)}">
+                <div class="video-miniatura-placeholder ${claseRed}" id="video-thumb-${i}">${icono}</div>
+                <div class="video-play-badge"><span class="video-play-icon">▶</span></div>
+              </a>
+              <div class="video-info">
+                <div class="video-cat">${escHtml(v.categoria || red)}</div>
+                <div class="video-titulo">${escHtml(v.titulo)}</div>
+                <p class="video-desc" id="video-desc-${i}">${escHtml(v.descripcion || `Toca para verlo en ${red}`)}</p>
+              </div>
             </div>
-            <div class="video-info">
-              <div class="video-cat">${escHtml(v.categoria || 'Video')}</div>
-              <div class="video-titulo">${escHtml(v.titulo)}</div>
-              <p class="video-desc">${escHtml(v.descripcion || '')}</p>
-            </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
+
+        // TikTok sí tiene oEmbed público: trae miniatura y descripción reales
+        videos.forEach((v, i) => {
+          if (v.tiktok_url) cargarDatosTikTok(v.tiktok_url, i);
+        });
 
       } catch (err) {
         grid.innerHTML = `<div class="msg-vacio msg-vacio-claro"><div class="icono-grande">🎬</div><h3>Sin videos aún</h3><p>Crea videos/videos.json para mostrar los videos.</p></div>`;
@@ -1735,36 +1721,40 @@
       }
     }
 
-
     /*
     ══════════════════════════════════════════════════════════════
-    FUNCIÓN: cargarCategorias
-    Lee categorias/categorias.json y muestra las áreas STEM
+    FUNCIÓN: cargarDatosTikTok — Consulta la API pública oEmbed de
+    TikTok (sin backend ni API key) para reemplazar el ícono musical
+    por la miniatura real del video y la descripción manual por el
+    texto real que el video tiene en TikTok. Si TikTok no responde
+    (sin internet, video privado o eliminado), la ficha se queda tal
+    cual quedó con los datos de videos.json. Instagram no ofrece un
+    endpoint público equivalente sin cuenta de desarrollador de Meta,
+    así que sus fichas no intentan esta consulta.
     ══════════════════════════════════════════════════════════════
     */
-    async function cargarCategorias() {
-      const grid = document.getElementById('categorias-grid');
+    async function cargarDatosTikTok(tiktokUrl, i) {
       try {
-        const resp = await fetch('categorias/categorias.json');
-        if (!resp.ok) throw new Error('categorias.json no encontrado');
-        const cats = await resp.json();
+        const resp = await fetch(`https://www.tiktok.com/oembed?url=${encodeURIComponent(tiktokUrl)}`);
+        if (!resp.ok) throw new Error('oEmbed de TikTok no disponible');
+        const data = await resp.json();
 
-        if (!cats || cats.length === 0) {
-          grid.innerHTML = mensajeVacio('🔬', 'Sin áreas aún', 'Agrega áreas en categorias/categorias.json');
-          return;
+        const thumbEl = document.getElementById(`video-thumb-${i}`);
+        if (thumbEl && data.thumbnail_url) {
+          const img = document.createElement('img');
+          img.id = `video-thumb-${i}`;
+          img.src = data.thumbnail_url;
+          img.alt = data.title || 'Video de TikTok';
+          img.loading = 'lazy';
+          thumbEl.replaceWith(img);
         }
 
-        grid.innerHTML = cats.map(c => `
-          <div class="categoria-card">
-            <span class="categoria-icono">${c.icono || '🔬'}</span>
-            <div class="categoria-nombre">${escHtml(c.nombre)}</div>
-            <p class="categoria-desc">${escHtml(c.descripcion || '')}</p>
-          </div>
-        `).join('');
-
+        const descEl = document.getElementById(`video-desc-${i}`);
+        if (descEl && data.title) {
+          descEl.textContent = data.title;
+        }
       } catch (err) {
-        grid.innerHTML = mensajeVacio('🔬', 'Sin áreas', 'Crea categorias/categorias.json');
-        console.warn(err.message);
+        console.warn('No se pudo obtener la descripción de TikTok:', err.message);
       }
     }
 

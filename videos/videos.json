@@ -2,19 +2,22 @@
   {
     "titulo": "Impresión 3D en acción — IEDP",
     "categoria": "Impresión 3D",
+    "red": "TikTok",
     "descripcion": "Proceso completo de impresión de una pieza en PLA usando la impresora 3D del colegio. Del diseño en Tinkercad a la pieza final.",
-    "youtube_id": "PEGA_EL_ID_DEL_VIDEO_AQUI"
+    "tiktok_url": "https://www.tiktok.com/@usuario/video/PEGA_EL_ID_DEL_VIDEO_AQUI"
   },
   {
     "titulo": "Cortadora Láser CO₂ — Proyecto de diseño",
     "categoria": "Cortadora Láser",
+    "red": "TikTok",
     "descripcion": "Demostración del uso de la cortadora láser CO₂ para fabricar piezas decorativas y funcionales en MDF.",
-    "youtube_id": "PEGA_EL_ID_DEL_VIDEO_AQUI"
+    "tiktok_url": "https://www.tiktok.com/@usuario/video/PEGA_EL_ID_DEL_VIDEO_AQUI"
   },
   {
     "titulo": "Feria de Ciencias 2025 — Registro completo",
     "categoria": "Ferias",
+    "red": "Instagram",
     "descripcion": "Registro en video de la feria de ciencias institucional con entrevistas a los estudiantes que presentaron sus proyectos.",
-    "youtube_id": "PEGA_EL_ID_DEL_VIDEO_AQUI"
+    "instagram_url": "https://www.instagram.com/reel/PEGA_EL_ID_DEL_VIDEO_AQUI/"
   }
 ]
