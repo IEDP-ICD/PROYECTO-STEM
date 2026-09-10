@@ -19,5 +19,12 @@
     "red": "Instagram",
     "descripcion": "Registro en video de la feria de ciencias institucional con entrevistas a los estudiantes que presentaron sus proyectos.",
     "instagram_url": "https://www.instagram.com/reel/PEGA_EL_ID_DEL_VIDEO_AQUI/"
+  },
+  {
+    "titulo": "Proceso para cargue de filamento e impresión de figuras",
+    "categoria": "Impresión 3D",
+    "red": "TikTok",
+    "descripcion": "Proceso para cargue de filamento e impresión de figuras.",
+    "tiktok_url": "https://vt.tiktok.com/ZSqUyFm2e/"
   }
 ]
