@@ -73,5 +73,50 @@
     "nombre": "Trío de figuras de personajes",
     "categoria": "Impresión 3D",
     "archivo": "trio-figuras-azules.jpg"
+  },
+  {
+    "nombre": "Multímetro y kit de circuitos",
+    "categoria": "Robótica",
+    "archivo": "robotica-multimetro-kit.jpg"
+  },
+  {
+    "nombre": "Robot oruga en construcción",
+    "categoria": "Robótica",
+    "archivo": "robotica-oruga.jpg"
+  },
+  {
+    "nombre": "Estudiantes en taller de robótica",
+    "categoria": "Robótica",
+    "archivo": "robotica-estudiantes-taller.jpg"
+  },
+  {
+    "nombre": "Materiales y componentes de robótica",
+    "categoria": "Robótica",
+    "archivo": "robotica-materiales-piso.jpg"
+  },
+  {
+    "nombre": "Kits de robótica almacenados",
+    "categoria": "Robótica",
+    "archivo": "robotica-kits-almacenados.jpg"
+  },
+  {
+    "nombre": "Molino de viento en madera",
+    "categoria": "Robótica",
+    "archivo": "robotica-molino-madera.jpg"
+  },
+  {
+    "nombre": "Simulador de física en pantalla",
+    "categoria": "Robótica",
+    "archivo": "robotica-simulador-pantalla.jpg"
+  },
+  {
+    "nombre": "Simulador de colisiones PhET",
+    "categoria": "Robótica",
+    "archivo": "robotica-simulador-colisiones.jpg"
+  },
+  {
+    "nombre": "Clase con simulador interactivo",
+    "categoria": "Robótica",
+    "archivo": "robotica-clase-simulador.jpg"
   }
 ]
