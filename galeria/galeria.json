@@ -118,5 +118,50 @@
     "nombre": "Clase con simulador interactivo",
     "categoria": "Robótica",
     "archivo": "robotica-clase-simulador.jpg"
+  },
+  {
+    "nombre": "Grabado del escudo institucional",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-grabado-escudo.jpg"
+  },
+  {
+    "nombre": "Lámpara decorativa de estrellas",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-lampara-estrellas.jpg"
+  },
+  {
+    "nombre": "Carro de madera armado",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-carro-madera.jpg"
+  },
+  {
+    "nombre": "Llavero del proyecto STEM",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-llavero-stem.jpg"
+  },
+  {
+    "nombre": "Llavero de personaje anime",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-llavero-anime.jpg"
+  },
+  {
+    "nombre": "Placa de reconocimiento grabada",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-placa-reconocimiento.jpg"
+  },
+  {
+    "nombre": "Cortadora láser en funcionamiento",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-maquina-corte.jpg"
+  },
+  {
+    "nombre": "Carro de madera decorado",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-carro-decorado.jpg"
+  },
+  {
+    "nombre": "Pieza recién cortada",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-corte-pieza.jpg"
   }
 ]
