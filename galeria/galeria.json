@@ -133,5 +133,10 @@
     "nombre": "Pieza recién cortada",
     "categoria": "Cortadora Láser",
     "archivo": "laser-corte-pieza.jpg"
+  },
+  {
+    "nombre": "Feria STEM - Proyectos de los estudiantes",
+    "categoria": "Ferias",
+    "archivo": "feria-stem-collage.jpg"
   }
 ]
