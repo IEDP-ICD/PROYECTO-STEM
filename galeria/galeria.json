@@ -28,5 +28,50 @@
     "nombre": "Estudiantes programando con Arduino",
     "categoria": "Detrás de Cámaras",
     "archivo": "arduino-programacion.jpg"
+  },
+  {
+    "nombre": "Busto de Goku Super Saiyan",
+    "categoria": "Impresión 3D",
+    "archivo": "goku-busto.jpg"
+  },
+  {
+    "nombre": "Colección de figuras impresas",
+    "categoria": "Impresión 3D",
+    "archivo": "coleccion-figuras.jpg"
+  },
+  {
+    "nombre": "Gengar y Pikachu",
+    "categoria": "Impresión 3D",
+    "archivo": "gengar-pikachu.jpg"
+  },
+  {
+    "nombre": "Figura histórica impresa en 3D",
+    "categoria": "Impresión 3D",
+    "archivo": "figura-historica.jpg"
+  },
+  {
+    "nombre": "Bulbasaur",
+    "categoria": "Impresión 3D",
+    "archivo": "bulbasaur.jpg"
+  },
+  {
+    "nombre": "Figuras pintadas a mano",
+    "categoria": "Impresión 3D",
+    "archivo": "figuras-pintadas.jpg"
+  },
+  {
+    "nombre": "Figura de personaje anime",
+    "categoria": "Impresión 3D",
+    "archivo": "figura-azul.jpg"
+  },
+  {
+    "nombre": "Figura de niño anime",
+    "categoria": "Impresión 3D",
+    "archivo": "figura-anime-azul.jpg"
+  },
+  {
+    "nombre": "Trío de figuras de personajes",
+    "categoria": "Impresión 3D",
+    "archivo": "trio-figuras-azules.jpg"
   }
 ]
