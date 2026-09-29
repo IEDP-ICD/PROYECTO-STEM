@@ -180,23 +180,23 @@
       font-size: clamp(.92rem, 2vh, 1.12rem); font-weight: 500;
     }
 
-    /* ═══ Equipo ═══ */
-    .equipo-foto-grupal {
-      width: 100%; max-width: 560px; height: clamp(170px, 32vh, 400px);
-      object-fit: cover; border-radius: var(--radio); box-shadow: var(--sombra);
-      border: 3px solid var(--cyan);
+    /* ═══ Equipo: foto grande de cada integrante junto a su ficha ═══ */
+    .integrantes-grid-3 {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.9rem, 2.2vw, 1.6rem);
+      width: 100%; flex: 1 1 0; min-height: 0;
     }
-    .integrantes-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.6rem, 1.6vw, 1.1rem); width: 100%; }
-    .miembro-mini {
-      position: relative; background: var(--blanco); border: 1px solid var(--gris-medio);
-      border-radius: 14px; padding: clamp(.7rem, 1.8vh, 1.1rem) clamp(.7rem, 1.6vw, 1rem);
-      text-align: center; overflow: hidden;
+    .miembro-card-v {
+      display: flex; flex-direction: column; background: var(--blanco); border: 1px solid var(--gris-medio);
+      border-radius: var(--radio); overflow: hidden; box-shadow: var(--sombra); min-height: 0;
     }
-    .miembro-mini::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--cyan), var(--azul-claro)); }
-    .miembro-mini .nombre { font-family: var(--fuente-display); font-weight: 700; color: var(--texto-oscuro); font-size: clamp(.92rem, 2vh, 1.12rem); line-height: 1.2; }
-    .miembro-mini .rol { color: var(--azul-claro); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: clamp(.66rem, 1.4vh, .8rem); margin: 3px 0 6px; }
-    .miembro-mini .skill { color: var(--texto-medio); font-size: clamp(.72rem, 1.55vh, .88rem); line-height: 1.35; font-weight: 300; }
-    .miembro-mini .skill b { color: var(--texto-oscuro); font-weight: 600; }
+    .miembro-card-v img {
+      width: 100%; height: clamp(150px, 34vh, 360px); flex: 0 0 auto;
+      object-fit: cover; border-bottom: 3px solid var(--cyan);
+    }
+    .miembro-card-v .info { padding: clamp(.7rem, 1.8vh, 1.2rem) clamp(.7rem, 1.5vw, 1.1rem); text-align: center; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+    .miembro-card-v .nombre { font-family: var(--fuente-display); font-weight: 700; color: var(--texto-oscuro); font-size: clamp(1.02rem, 2.3vh, 1.3rem); line-height: 1.2; }
+    .miembro-card-v .rol { color: var(--azul-claro); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; font-size: clamp(.7rem, 1.5vh, .85rem); margin: 4px 0 7px; }
+    .miembro-card-v .desc { color: var(--texto-medio); font-size: clamp(.78rem, 1.65vh, .96rem); line-height: 1.4; font-weight: 300; }
 
     /* Dos columnas texto + imagen */
     .dos-col {
@@ -332,6 +332,12 @@
       padding: .5rem 1.3rem; border-radius: 100px; font-size: clamp(.85rem, 1.9vh, 1.05rem);
     }
 
+    /* Imagen de acento para diapositivas con poco texto */
+    .imagen-acento {
+      width: auto; height: clamp(160px, 36vh, 380px); max-width: 90%;
+      object-fit: cover; border-radius: var(--radio); box-shadow: var(--sombra); border: 3px solid var(--cyan);
+    }
+
     /* Final / gracias */
     .final { text-align: center; align-items: center; }
     .final .logo-final {
@@ -374,7 +380,7 @@
     .nav-contador { font-size: clamp(.6rem, 1.3vh, .72rem); color: rgba(255,255,255,.6); font-weight: 700; letter-spacing: .05em; min-width: 40px; text-align: center; }
 
     @media (max-width: 680px) {
-      .integrantes-grid-3, .dos-tarjetas, .mv-grid, .segmento-grid, .recursos-grid { grid-template-columns: 1fr; }
+      .dos-tarjetas, .mv-grid, .segmento-grid, .recursos-grid { grid-template-columns: 1fr; }
       .dos-col, .dos-col.invertido { display: flex; flex-direction: column; justify-content: center; gap: .8rem; }
       .dos-col img { width: 100%; height: auto; flex: 1 1 auto; min-height: 130px; }
       .dos-col .col-texto, .dos-col > .lead { flex: 0 0 auto; }
@@ -389,11 +395,12 @@
       .lead { font-size: clamp(.9rem, 2.3vh, 1.15rem); line-height: 1.4; }
       .tarjeta p { font-size: clamp(1rem, 2.5vh, 1.28rem); }
 
-      .equipo-foto-grupal { max-width: 100%; height: clamp(130px, 26vh, 260px); }
-      .integrantes-grid-3 { gap: .55rem; }
-      .miembro-mini { padding: .55rem .7rem; }
-      .miembro-mini .nombre { font-size: clamp(.85rem, 2vh, 1rem); }
-      .miembro-mini .skill { font-size: clamp(.66rem, 1.5vh, .78rem); }
+      .integrantes-grid-3 { gap: .45rem; }
+      .miembro-card-v img { height: clamp(90px, 20vh, 170px); }
+      .miembro-card-v .info { padding: .4rem .35rem; }
+      .miembro-card-v .nombre { font-size: clamp(.72rem, 2vh, .88rem); line-height: 1.15; }
+      .miembro-card-v .rol { font-size: clamp(.56rem, 1.4vh, .66rem); margin: 2px 0 4px; }
+      .miembro-card-v .desc { font-size: clamp(.6rem, 1.5vh, .7rem); line-height: 1.28; }
       .deco-icon { display: none; }
     }
 
@@ -485,22 +492,30 @@
       <div class="slide-inner">
         <p class="eyebrow">01 — El equipo</p>
         <h2>Integrantes</h2>
-        <img class="equipo-foto-grupal" src="img/equipo-integrantes.jpg" alt="Nailis, Lina y Genessis, el equipo del Proyecto STEM" />
         <div class="integrantes-grid-3">
-          <div class="miembro-mini">
-            <div class="nombre">Nailis Rodríguez</div>
-            <div class="rol">Toma de fotografías</div>
-            <p class="skill">Bachillerato · <b>Conocimientos:</b> manejo de máquinas láser y 3D</p>
+          <div class="miembro-card-v">
+            <img src="img/integrante-nailis.jpg" alt="Nailis Rodríguez" />
+            <div class="info">
+              <div class="nombre">Nailis Rodríguez</div>
+              <div class="rol">Documentación y contenido</div>
+              <p class="desc">Registra en fotos y video las actividades STEM del colegio y redacta las descripciones de cada proyecto.</p>
+            </div>
           </div>
-          <div class="miembro-mini">
-            <div class="nombre">Lina Duarte</div>
-            <div class="rol">Edición de imágenes</div>
-            <p class="skill">Bachillerato · <b>Conocimientos:</b> Photoshop y máquina 3D</p>
+          <div class="miembro-card-v">
+            <img src="img/integrante-lina.jpg" alt="Lina Duarte" />
+            <div class="info">
+              <div class="nombre">Lina Duarte</div>
+              <div class="rol">Diseño y redes sociales</div>
+              <p class="desc">Gestiona la identidad visual del proyecto, las publicaciones en redes y la edición de videos del canal.</p>
+            </div>
           </div>
-          <div class="miembro-mini">
-            <div class="nombre">Genessis Cassiani</div>
-            <div class="rol">Diseño de logos e infografías</div>
-            <p class="skill">Bachillerato · <b>Conocimientos:</b> máquina 3D y láser</p>
+          <div class="miembro-card-v">
+            <img src="img/integrante-genessis.jpg" alt="Genessis Cassiani" />
+            <div class="info">
+              <div class="nombre">Genessis Cassiani</div>
+              <div class="rol">Investigación y redacción</div>
+              <p class="desc">Investiga el contexto de cada proyecto, entrevista a los estudiantes y redacta los textos del sitio.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -568,8 +583,13 @@
       <div class="slide-inner">
         <p class="eyebrow">05 — Por qué vale la pena</p>
         <h2>Justificación</h2>
-        <div class="tarjeta">
-          <p>Este proyecto busca motivar el aprendizaje de STEM de manera práctica e innovadora, mostrando estas áreas como algo divertido y útil para la vida. Su valor está en combinar creatividad, tecnología y proyectos reales que desarrollan habilidades para el futuro y generan un impacto positivo en la comunidad.</p>
+        <div class="dos-col invertido">
+          <img src="img/robotica-taller.jpg" alt="Estudiantes en un taller práctico de robótica y electrónica" />
+          <div class="col-texto">
+            <div class="tarjeta">
+              <p>Este proyecto busca motivar el aprendizaje de STEM de manera práctica e innovadora, mostrando estas áreas como algo divertido y útil para la vida. Su valor está en combinar creatividad, tecnología y proyectos reales que desarrollan habilidades para el futuro y generan un impacto positivo en la comunidad.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -600,7 +620,7 @@
         <p class="eyebrow">07 — Cómo lo hacemos</p>
         <h2>Tecnologías a <em>emplear</em></h2>
         <div class="dos-col invertido">
-          <img src="img/impresion-3d.jpg" alt="Estudiantes usando la impresora 3D" />
+          <img src="img/laser-maquina-corte.jpg" alt="Cortadora láser CO₂ en funcionamiento" />
           <div class="col-texto">
             <p class="lead">Herramientas digitales y software interactivo, junto con materiales de bajo costo, equipos básicos de laboratorio y recursos reciclables:</p>
             <div class="chips">
@@ -663,7 +683,7 @@
               <div><h3>Portal web de divulgación</h3><p>Plataforma interactiva con banco de proyectos escolares, prototipos de robótica y ferias de ciencia.</p></div>
             </div>
           </div>
-          <img src="img/impresion-3d.jpg" alt="Estudiantes documentando un proyecto de impresión 3D" />
+          <img src="img/feria-stem-collage.jpg" alt="Collage de proyectos presentados en la Feria STEM" />
         </div>
       </div>
     </section>
@@ -699,17 +719,20 @@
       <div class="slide-inner">
         <p class="eyebrow">12 — A quién llegamos</p>
         <h2>Segmento <em>Objetivo</em></h2>
-        <div class="segmento-grid">
-          <div class="segmento-card">
-            <span class="icono">🌎</span>
-            <h3>Ubicación</h3>
-            <p>Comunidad de la Institución Educativa La Divina Pastora: directivos, padres de familia y docentes.</p>
+        <div class="dos-col">
+          <div class="col-texto" style="align-items: stretch; gap: clamp(.8rem, 2vh, 1.4rem);">
+            <div class="segmento-card">
+              <span class="icono">🌎</span>
+              <h3>Ubicación</h3>
+              <p>Comunidad de la Institución Educativa La Divina Pastora: directivos, padres de familia y docentes.</p>
+            </div>
+            <div class="segmento-card">
+              <span class="icono">🎓</span>
+              <h3>Perfil</h3>
+              <p>Estudiantes, docentes e investigadores.</p>
+            </div>
           </div>
-          <div class="segmento-card">
-            <span class="icono">🎓</span>
-            <h3>Perfil</h3>
-            <p>Estudiantes, docentes e investigadores.</p>
-          </div>
+          <img src="img/clase-simulador.jpg" alt="Estudiantes en clase usando un simulador interactivo" />
         </div>
       </div>
     </section>
@@ -719,8 +742,13 @@
       <div class="slide-inner">
         <p class="eyebrow">13 — Lo que nos distingue</p>
         <h2>Ventajas <em>Competitivas</em></h2>
-        <div class="tarjeta">
-          <p>Somos la primera promoción de la Institución Educativa La Divina Pastora con enfoque STEM: una propuesta pedagógica innovadora que fortalece el pensamiento crítico, la creatividad, la investigación y la resolución de problemas. Este nuevo enfoque prepara a los estudiantes para los retos del mundo actual y marca el inicio de una nueva etapa en la historia de la institución.</p>
+        <div class="dos-col invertido">
+          <img src="img/laser-escudo.jpg" alt="Escudo de la institución grabado en la cortadora láser" />
+          <div class="col-texto">
+            <div class="tarjeta">
+              <p>Somos la primera promoción de la Institución Educativa La Divina Pastora con enfoque STEM: una propuesta pedagógica innovadora que fortalece el pensamiento crítico, la creatividad, la investigación y la resolución de problemas. Este nuevo enfoque prepara a los estudiantes para los retos del mundo actual y marca el inicio de una nueva etapa en la historia de la institución.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -750,6 +778,7 @@
         <span class="fase-badge">Fase 3</span>
         <h2>Producción y <em>comercialización</em></h2>
         <p class="lead">Producción y comercialización del producto y del servicio.</p>
+        <img class="imagen-acento" src="img/coleccion-figuras.jpg" alt="Colección de piezas producidas por el proyecto STEM" />
       </div>
     </section>
 
