@@ -1,32 +1,142 @@
 [
   {
-    "nombre": "Feria de Ciencias 2025",
-    "categoria": "Ferias",
-    "archivo": "feria-2025-01.jpg"
-  },
-  {
-    "nombre": "Taller de robótica con Arduino",
-    "categoria": "Robótica",
-    "archivo": "taller-robotica.jpg"
-  },
-  {
-    "nombre": "Proceso de impresión 3D",
+    "nombre": "Busto de Goku Super Saiyan",
     "categoria": "Impresión 3D",
-    "archivo": "impresion-proceso.jpg"
+    "archivo": "goku-busto.jpg"
   },
   {
-    "nombre": "Cortadora láser CO₂ en acción",
+    "nombre": "Colección de figuras impresas",
+    "categoria": "Impresión 3D",
+    "archivo": "coleccion-figuras.jpg"
+  },
+  {
+    "nombre": "Gengar y Pikachu",
+    "categoria": "Impresión 3D",
+    "archivo": "gengar-pikachu.jpg"
+  },
+  {
+    "nombre": "Figura histórica impresa en 3D",
+    "categoria": "Impresión 3D",
+    "archivo": "figura-historica.jpg"
+  },
+  {
+    "nombre": "Bulbasaur",
+    "categoria": "Impresión 3D",
+    "archivo": "bulbasaur.jpg"
+  },
+  {
+    "nombre": "Figuras pintadas a mano",
+    "categoria": "Impresión 3D",
+    "archivo": "figuras-pintadas.jpg"
+  },
+  {
+    "nombre": "Figura de personaje anime",
+    "categoria": "Impresión 3D",
+    "archivo": "figura-azul.jpg"
+  },
+  {
+    "nombre": "Figura de niño anime",
+    "categoria": "Impresión 3D",
+    "archivo": "figura-anime-azul.jpg"
+  },
+  {
+    "nombre": "Trío de figuras de personajes",
+    "categoria": "Impresión 3D",
+    "archivo": "trio-figuras-azules.jpg"
+  },
+  {
+    "nombre": "Multímetro y kit de circuitos",
+    "categoria": "Robótica",
+    "archivo": "robotica-multimetro-kit.jpg"
+  },
+  {
+    "nombre": "Robot oruga en construcción",
+    "categoria": "Robótica",
+    "archivo": "robotica-oruga.jpg"
+  },
+  {
+    "nombre": "Estudiantes en taller de robótica",
+    "categoria": "Robótica",
+    "archivo": "robotica-estudiantes-taller.jpg"
+  },
+  {
+    "nombre": "Materiales y componentes de robótica",
+    "categoria": "Robótica",
+    "archivo": "robotica-materiales-piso.jpg"
+  },
+  {
+    "nombre": "Kits de robótica almacenados",
+    "categoria": "Robótica",
+    "archivo": "robotica-kits-almacenados.jpg"
+  },
+  {
+    "nombre": "Molino de viento en madera",
+    "categoria": "Robótica",
+    "archivo": "robotica-molino-madera.jpg"
+  },
+  {
+    "nombre": "Simulador de física en pantalla",
+    "categoria": "Robótica",
+    "archivo": "robotica-simulador-pantalla.jpg"
+  },
+  {
+    "nombre": "Simulador de colisiones PhET",
+    "categoria": "Robótica",
+    "archivo": "robotica-simulador-colisiones.jpg"
+  },
+  {
+    "nombre": "Clase con simulador interactivo",
+    "categoria": "Robótica",
+    "archivo": "robotica-clase-simulador.jpg"
+  },
+  {
+    "nombre": "Grabado del escudo institucional",
     "categoria": "Cortadora Láser",
-    "archivo": "laser-accion.jpg"
+    "archivo": "laser-grabado-escudo.jpg"
   },
   {
-    "nombre": "Exposición de proyectos electrónicos",
+    "nombre": "Lámpara decorativa de estrellas",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-lampara-estrellas.jpg"
+  },
+  {
+    "nombre": "Carro de madera armado",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-carro-madera.jpg"
+  },
+  {
+    "nombre": "Llavero del proyecto STEM",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-llavero-stem.jpg"
+  },
+  {
+    "nombre": "Llavero de personaje anime",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-llavero-anime.jpg"
+  },
+  {
+    "nombre": "Placa de reconocimiento grabada",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-placa-reconocimiento.jpg"
+  },
+  {
+    "nombre": "Cortadora láser en funcionamiento",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-maquina-corte.jpg"
+  },
+  {
+    "nombre": "Carro de madera decorado",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-carro-decorado.jpg"
+  },
+  {
+    "nombre": "Pieza recién cortada",
+    "categoria": "Cortadora Láser",
+    "archivo": "laser-corte-pieza.jpg"
+  },
+  {
+    "nombre": "Feria STEM - Proyectos de los estudiantes",
     "categoria": "Ferias",
-    "archivo": "exposicion-electronica.jpg"
-  },
-  {
-    "nombre": "Estudiantes programando con Arduino",
-    "categoria": "Electrónica",
-    "archivo": "arduino-programacion.jpg"
+    "archivo": "feria-stem-collage.jpg"
   }
 ]
