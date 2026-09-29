@@ -292,9 +292,9 @@
     .etiqueta-figura img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: var(--radio); box-shadow: var(--sombra); border: 3px solid var(--cyan); }
 
     /* Panel de QR — grandes, para escanear en vivo */
-    .qr-panel { display: flex; flex-direction: row; justify-content: center; align-items: center; gap: clamp(1.6rem, 4.5vw, 3.4rem); width: 100%; flex: 1 1 0; min-height: 0; }
+    .qr-panel { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(1rem, 3vw, 2.2rem); width: 100%; flex: 1 1 0; min-height: 0; }
     .qr-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(.6rem, 1.6vh, 1rem); height: 100%; }
-    .qr-card img { width: auto; height: clamp(210px, 44vh, 460px); max-width: 92%; border-radius: 1rem; box-shadow: var(--sombra); border: 1px solid var(--gris-medio); }
+    .qr-card img { width: auto; height: clamp(180px, 38vh, 360px); max-width: 92%; border-radius: 1rem; box-shadow: var(--sombra); border: 1px solid var(--gris-medio); }
     .qr-card span { font-weight: 700; font-size: clamp(1rem, 2.3vh, 1.35rem); line-height: 1.32; color: var(--blanco); text-align: center; max-width: 19rem; }
 
     /* Paleta de colores */
@@ -444,9 +444,10 @@
       .costos-total { padding: .4rem .7rem; }
       .costos-total .etiqueta { font-size: .66rem; }
       .costos-total .monto { font-size: 1.02rem; }
-      .qr-panel { gap: 1rem; }
-      .qr-card img { height: clamp(140px, 38vw, 240px); }
-      .qr-card span { font-size: .8rem; max-width: 9.2rem; }
+      .qr-panel { flex-wrap: nowrap; gap: .5rem; }
+      .qr-card { gap: .4rem; }
+      .qr-card img { height: clamp(90px, 34vw, 190px); }
+      .qr-card span { font-size: .64rem; line-height: 1.2; max-width: 6.2rem; }
       .paleta-grid { gap: .4rem; }
       .paleta-chip .swatch { height: 44px; }
       .paleta-chip .info { padding: .3rem .3rem; }
@@ -626,10 +627,14 @@
             <div class="chips">
               <span>🎨 Adobe Photoshop</span>
               <span>🎬 Adobe Premiere</span>
+              <span>✂️ CapCut</span>
               <span>🎵 TikTok</span>
               <span>📷 Instagram</span>
               <span>🖌️ Canva</span>
               <span>🌐 Página web</span>
+              <span>✦ Claude</span>
+              <span>🐙 GitHub</span>
+              <span>🔌 Arduino</span>
             </div>
           </div>
         </div>
@@ -756,7 +761,7 @@
     <!-- ═══ 15. REDES SOCIALES ═══ -->
     <section class="slide" data-bg="15">
       <div class="slide-inner">
-        <p class="eyebrow">14 — Síguenos</p>
+        <p class="eyebrow">14 — Síguenos y visítanos</p>
         <h2>Redes <em>Sociales</em></h2>
         <div class="qr-panel">
           <div class="qr-card">
@@ -766,6 +771,10 @@
           <div class="qr-card">
             <img src="img/qr-instagram.jpg" alt="Código QR al Instagram @stem_iedp" />
             <span>📷 Escanea y síguenos en Instagram</span>
+          </div>
+          <div class="qr-card">
+            <img src="img/qr-sitio-web.jpg" alt="Código QR al sitio web del Proyecto STEM" />
+            <span>🌐 Escanea y visita nuestro sitio web</span>
           </div>
         </div>
       </div>
