@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  SUSTENTACIÓN DEL PROYECTO — STEM                             ║
+  ║  Página autocontenida, no enlazada desde el sitio principal.  ║
+  ║  Accesible solo escribiendo la URL: /sustentacion/            ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sustentación · Proyecto STEM</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══ Paleta idéntica a la del sitio principal ═══ */
+    :root {
+      --azul-marino: #1a2d5a;
+      --azul-medio:  #1e3a7a;
+      --azul-claro:  #2d5aa0;
+      --cyan:        #00b4d8;
+      --cyan-suave:  #90e0ef;
+      --blanco:      #ffffff;
+      --gris-fondo:  #f0f4f8;
+      --gris-medio:  #e2e8f0;
+      --gris-oscuro: #64748b;
+      --texto-oscuro:#0f1d3a;
+      --texto-medio: #334155;
+
+      --radio: 20px;
+      --sombra: 0 20px 50px rgba(10, 22, 40, .45);
+      --fuente-display: "Space Grotesk", sans-serif;
+      --fuente-cuerpo:  "Inter", sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--azul-marino);
+      font-family: var(--fuente-cuerpo);
+      color: rgba(255,255,255,.85);
+    }
+
+    /* Fondo: degradado azul marino + cuadrícula técnica + resplandor cyan, igual que el hero del sitio */
+    body {
+      background: linear-gradient(160deg, var(--azul-marino) 0%, #0a1628 100%);
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0, 180, 216, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 180, 216, .07) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    body::after {
+      content: "";
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(0, 180, 216, .12) 0%, transparent 65%);
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .rec-dot {
+      width: .55rem; height: .55rem; border-radius: 50%;
+      background: var(--cyan); box-shadow: 0 0 12px var(--cyan);
+      animation: parpadeo 1.6s ease-in-out infinite; flex-shrink: 0;
+    }
+    @keyframes parpadeo { 50% { opacity: .25; } }
+
+    /* ═══ Deck ═══ */
+    .deck { position: relative; width: 100vw; height: 100svh; height: 100vh; overflow: hidden; z-index: 1; }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: stretch; justify-content: center;
+      padding: clamp(3.6rem, 9vh, 5.2rem) clamp(1.2rem, 4vw, 4rem) clamp(4.2rem, 10vh, 5.6rem);
+      opacity: 0; transform: translateX(60px) scale(0.97);
+      pointer-events: none;
+      transition: transform 0.7s cubic-bezier(0.34, 1.1, 0.64, 1), opacity 0.5s ease;
+      z-index: 1; overflow: hidden;
+    }
+    .slide.activa { opacity: 1; transform: translateX(0) scale(1); pointer-events: auto; z-index: 2; }
+    .slide.saliendo-izq { transform: translateX(-70px) scale(0.97); opacity: 0; }
+    .slide.saliendo-der { transform: translateX(70px) scale(0.97); opacity: 0; }
+
+    .slide-inner {
+      position: relative; z-index: 1; width: 100%; max-width: 1800px; max-height: 100%;
+      overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; gap: clamp(.65rem, 2vh, 1.4rem);
+    }
+
+    .deco-icon {
+      position: absolute; opacity: .16; pointer-events: none; z-index: 0;
+      font-size: clamp(1.8rem, 4.4vh, 3.2rem); animation: flotar 7s ease-in-out infinite;
+    }
+
+    .slide-inner > * {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+    .slide.activa .slide-inner > *  { opacity: 1; transform: translateY(0); }
+    .slide.activa .slide-inner > *:nth-child(1) { transition-delay: 0.05s; }
+    .slide.activa .slide-inner > *:nth-child(2) { transition-delay: 0.13s; }
+    .slide.activa .slide-inner > *:nth-child(3) { transition-delay: 0.21s; }
+    .slide.activa .slide-inner > *:nth-child(4) { transition-delay: 0.29s; }
+    .slide.activa .slide-inner > *:nth-child(5) { transition-delay: 0.37s; }
+
+    /* ═══ Tipografía ═══ */
+    .eyebrow {
+      font-size: clamp(1rem, 2.3vh, 1.3rem); font-weight: 700; letter-spacing: .2em;
+      color: var(--cyan-suave); text-transform: uppercase;
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    }
+    .slide h2 {
+      font-family: var(--fuente-display); font-weight: 700;
+      font-size: clamp(2.2rem, 7.6vh, 4.3rem); line-height: 1.06; color: var(--blanco);
+    }
+    .slide h2 em { font-style: normal; color: var(--cyan); }
+
+    .lead {
+      font-size: clamp(1.25rem, 3vh, 1.75rem); color: rgba(255,255,255,.78);
+      line-height: 1.5; max-width: 960px; margin: 0 auto; font-weight: 300;
+    }
+
+    /* Ficha blanca con franja cyan arriba — igual a .mv-card del sitio */
+    .tarjeta {
+      position: relative; background: var(--blanco); border: 1px solid var(--gris-medio);
+      border-radius: var(--radio); padding: clamp(1rem, 2.6vh, 1.8rem) clamp(1.2rem, 2.6vw, 2rem);
+      box-shadow: var(--sombra); overflow: hidden; text-align: left;
+    }
+    .tarjeta::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--cyan), var(--azul-claro));
+    }
+    .tarjeta p { font-size: clamp(1.12rem, 2.6vh, 1.5rem); color: var(--texto-medio); line-height: 1.55; font-weight: 300; }
+    .tarjeta h3 {
+      font-family: var(--fuente-display); color: var(--azul-marino);
+      font-size: clamp(1.25rem, 3.2vh, 1.7rem); margin-bottom: clamp(.3rem, 1vh, .6rem);
+      display: flex; align-items: center; gap: .5rem;
+    }
+
+    /* ═══ Slide 1: portada ═══ */
+    .portada { text-align: center; align-items: center; }
+    .portada-logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; gap: 1.6rem; margin: 0 auto clamp(.3rem, 1vh, .6rem); }
+    .portada-logo {
+      width: clamp(96px, 17vh, 165px); height: clamp(96px, 17vh, 165px); border-radius: 50%;
+      object-fit: contain; background: var(--blanco); padding: 6px;
+      border: 3px solid var(--cyan);
+      box-shadow: 0 0 0 8px rgba(0,180,216,.12), 0 0 40px rgba(0,180,216,.25), var(--sombra);
+      animation: flotar 6s ease-in-out infinite;
+    }
+    @keyframes flotar { 50% { transform: translateY(-10px); } }
+    .portada-sep { color: rgba(0,180,216,.4); font-size: clamp(1.2rem, 3vh, 1.6rem); }
+    .portada-escudo {
+      width: clamp(70px, 12vh, 118px); height: clamp(70px, 12vh, 118px); border-radius: 50%;
+      object-fit: contain; background: var(--blanco); padding: 6px;
+      border: 2px solid rgba(255,255,255,.3); box-shadow: var(--sombra);
+    }
+    .portada h1 {
+      font-family: var(--fuente-display); font-weight: 700; text-transform: uppercase;
+      font-size: clamp(2.8rem, 9.5vh, 5.4rem); line-height: 1; color: var(--blanco); letter-spacing: -.01em;
+    }
+    .portada h1 span { color: var(--cyan); }
+    .portada .subt { font-size: clamp(1.15rem, 2.7vh, 1.5rem); color: rgba(255,255,255,.65); max-width: 46rem; margin: 0 auto; font-weight: 300; }
+    .portada-footer { font-size: clamp(.85rem, 1.9vh, 1.05rem); color: rgba(255,255,255,.45); letter-spacing: .02em; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .chips span {
+      background: rgba(0,180,216,.1); border: 1px solid rgba(0,180,216,.32); color: var(--cyan-suave);
+      padding: clamp(.4rem, 1.1vh, .6rem) clamp(.8rem, 1.7vw, 1.1rem); border-radius: 100px;
+      font-size: clamp(.92rem, 2vh, 1.12rem); font-weight: 500;
+    }
+
+    /* ═══ Equipo ═══ */
+    .equipo-foto-grupal {
+      width: 100%; max-width: 560px; height: clamp(170px, 32vh, 400px);
+      object-fit: cover; border-radius: var(--radio); box-shadow: var(--sombra);
+      border: 3px solid var(--cyan);
+    }
+    .integrantes-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.6rem, 1.6vw, 1.1rem); width: 100%; }
+    .miembro-mini {
+      position: relative; background: var(--blanco); border: 1px solid var(--gris-medio);
+      border-radius: 14px; padding: clamp(.7rem, 1.8vh, 1.1rem) clamp(.7rem, 1.6vw, 1rem);
+      text-align: center; overflow: hidden;
+    }
+    .miembro-mini::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--cyan), var(--azul-claro)); }
+    .miembro-mini .nombre { font-family: var(--fuente-display); font-weight: 700; color: var(--texto-oscuro); font-size: clamp(.92rem, 2vh, 1.12rem); line-height: 1.2; }
+    .miembro-mini .rol { color: var(--azul-claro); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: clamp(.66rem, 1.4vh, .8rem); margin: 3px 0 6px; }
+    .miembro-mini .skill { color: var(--texto-medio); font-size: clamp(.72rem, 1.55vh, .88rem); line-height: 1.35; font-weight: 300; }
+    .miembro-mini .skill b { color: var(--texto-oscuro); font-weight: 600; }
+
+    /* Dos columnas texto + imagen */
+    .dos-col {
+      display: grid; grid-template-columns: 1fr .95fr; grid-template-rows: minmax(0, 1fr);
+      gap: clamp(1.2rem, 3.2vw, 2.6rem); align-items: stretch; width: 100%; flex: 1 1 0; min-height: 0;
+    }
+    .dos-col.invertido { grid-template-columns: .95fr 1fr; }
+    .dos-col img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radio); box-shadow: var(--sombra); border: 3px solid var(--cyan); }
+    .dos-col .col-texto { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: clamp(.4rem, 1.2vh, .8rem); min-height: 0; }
+    .dos-col > .lead { display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+    .logo-corporativo { width: auto; height: clamp(200px, 44vh, 440px); aspect-ratio: 1/1; flex: 0 0 auto; }
+
+    .dos-tarjetas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.8rem, 2vw, 1.4rem); }
+
+    .lista-check { list-style: none; display: grid; gap: clamp(.35rem, 1vh, .6rem); text-align: left; }
+    .lista-check li {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--blanco); border: 1px solid var(--gris-medio); border-radius: 12px;
+      padding: clamp(.55rem, 1.5vh, .9rem) clamp(.9rem, 1.8vw, 1.2rem);
+      font-size: clamp(1.05rem, 2.4vh, 1.38rem); color: var(--texto-medio); text-align: left; font-weight: 300;
+    }
+    .lista-check li::before {
+      content: '✓'; flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--azul-claro)); color: var(--blanco);
+      font-size: .76rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+
+    .objetivo-general {
+      background: linear-gradient(135deg, rgba(0,180,216,.16), rgba(45,90,160,.16));
+      border: 1px solid rgba(0,180,216,.35); border-radius: var(--radio);
+      padding: clamp(.9rem, 2.3vh, 1.5rem) clamp(1.2rem, 2.6vw, 1.8rem);
+      font-size: clamp(1.15rem, 2.7vh, 1.55rem); color: var(--blanco); line-height: 1.48;
+    }
+    .objetivo-general .etiqueta {
+      display: block; font-size: clamp(.85rem, 1.8vh, 1rem); letter-spacing: .12em; text-transform: uppercase;
+      font-weight: 800; color: var(--cyan-suave); margin-bottom: 5px;
+    }
+
+    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.8rem, 2vw, 1.4rem); }
+    .mv-card {
+      position: relative; background: var(--blanco); border: 1px solid var(--gris-medio); border-radius: var(--radio);
+      padding: clamp(1rem, 2.5vh, 1.7rem); overflow: hidden; text-align: left;
+    }
+    .mv-card::before { content:""; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--cyan), var(--azul-claro)); }
+    .mv-card .mv-icon { font-size: clamp(1.8rem, 3.8vh, 2.4rem); margin-bottom: clamp(.3rem, .8vh, .5rem); display: block; }
+    .mv-card h3 { font-family: var(--fuente-display); color: var(--azul-marino); font-size: clamp(1.3rem, 3vh, 1.65rem); margin-bottom: clamp(.35rem, 1vh, .65rem); }
+    .mv-card p { font-size: clamp(1.02rem, 2.3vh, 1.25rem); color: var(--texto-medio); line-height: 1.5; font-weight: 300; }
+
+    .recursos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.45rem, 1.2vh, .8rem); }
+    .recursos-grid .servicio-bloque { padding: clamp(.5rem, 1.3vh, .85rem) clamp(.75rem, 1.6vw, 1.05rem); gap: 3px; }
+    .recursos-grid .servicio-bloque .icono { width: clamp(32px, 5.2vh, 42px); height: clamp(32px, 5.2vh, 42px); font-size: clamp(1.02rem, 2.1vh, 1.3rem); margin-bottom: 0; }
+    .recursos-grid .servicio-bloque h3 { font-size: clamp(.98rem, 2.1vh, 1.22rem); margin-bottom: 0; }
+    .recursos-grid .servicio-bloque p { font-size: clamp(.78rem, 1.6vh, .92rem); line-height: 1.28; }
+
+    .servicio-bloque {
+      background: var(--blanco); border: 1px solid var(--gris-medio); border-radius: var(--radio);
+      padding: clamp(.8rem, 2vh, 1.4rem) clamp(.9rem, 2vw, 1.3rem);
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px;
+      box-shadow: var(--sombra);
+    }
+    .servicio-bloque .icono {
+      font-size: clamp(1.5rem, 3.1vh, 2rem); flex-shrink: 0;
+      width: clamp(46px, 7.8vh, 60px); height: clamp(46px, 7.8vh, 60px);
+      background: linear-gradient(135deg, rgba(0,180,216,.18), rgba(45,90,160,.18));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    .servicio-bloque h3 { font-family: var(--fuente-display); font-size: clamp(1.15rem, 2.6vh, 1.45rem); color: var(--azul-marino); margin-bottom: 3px; }
+    .servicio-bloque p { font-size: clamp(.95rem, 2.1vh, 1.18rem); color: var(--texto-medio); line-height: 1.38; font-weight: 300; }
+
+    /* Equipo técnico disponible (fotos reales) */
+    .equipo-tecnico-titulo { font-size: clamp(.85rem, 1.8vh, 1rem); letter-spacing: .12em; text-transform: uppercase; font-weight: 800; color: var(--cyan-suave); text-align: center; }
+    .equipo-tecnico-grid { display: flex; flex-direction: row; justify-content: center; align-items: flex-start; gap: clamp(1rem, 2.6vw, 2rem); width: 100%; }
+    .equipo-tecnico-card { display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+    .equipo-tecnico-card img {
+      width: clamp(72px, 13vh, 135px); height: clamp(96px, 17.5vh, 180px);
+      object-fit: contain; background: var(--blanco); border: 1px solid var(--gris-medio); border-radius: 14px;
+      box-shadow: var(--sombra);
+    }
+    .equipo-tecnico-card span { font-size: clamp(.76rem, 1.55vh, .92rem); color: rgba(255,255,255,.7); text-align: center; font-weight: 600; max-width: 9.5rem; line-height: 1.25; }
+
+    .segmento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.9rem, 2.2vw, 1.6rem); }
+    .segmento-card {
+      position: relative; background: var(--blanco); border: 1px solid var(--gris-medio); border-radius: var(--radio);
+      padding: clamp(1.1rem, 2.8vh, 1.9rem); text-align: left; overflow: hidden;
+    }
+    .segmento-card::before { content:""; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--cyan), var(--azul-claro)); }
+    .segmento-card .icono { font-size: clamp(1.8rem, 3.6vh, 2.3rem); margin-bottom: clamp(.3rem, .8vh, .5rem); display: block; }
+    .segmento-card h3 { font-family: var(--fuente-display); font-size: clamp(1.3rem, 2.9vh, 1.6rem); color: var(--azul-marino); margin-bottom: clamp(.3rem, .8vh, .5rem); }
+    .segmento-card p { font-size: clamp(1.02rem, 2.3vh, 1.28rem); color: var(--texto-medio); line-height: 1.48; font-weight: 300; }
+
+    /* Etiqueta / poster de evento */
+    .etiqueta-figura { width: 100%; flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+    .etiqueta-figura img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: var(--radio); box-shadow: var(--sombra); border: 3px solid var(--cyan); }
+
+    /* Panel de QR — grandes, para escanear en vivo */
+    .qr-panel { display: flex; flex-direction: row; justify-content: center; align-items: center; gap: clamp(1.6rem, 4.5vw, 3.4rem); width: 100%; flex: 1 1 0; min-height: 0; }
+    .qr-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(.6rem, 1.6vh, 1rem); height: 100%; }
+    .qr-card img { width: auto; height: clamp(210px, 44vh, 460px); max-width: 92%; border-radius: 1rem; box-shadow: var(--sombra); border: 1px solid var(--gris-medio); }
+    .qr-card span { font-weight: 700; font-size: clamp(1rem, 2.3vh, 1.35rem); line-height: 1.32; color: var(--blanco); text-align: center; max-width: 19rem; }
+
+    /* Paleta de colores */
+    .paleta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(.5rem, 1.4vw, .9rem); }
+    .paleta-chip { border-radius: var(--radio); overflow: hidden; border: 1px solid var(--gris-medio); box-shadow: var(--sombra); display: flex; flex-direction: column; }
+    .paleta-chip .swatch { height: clamp(84px, 16vh, 140px); }
+    .paleta-chip .info { background: var(--blanco); padding: clamp(.5rem, 1.2vh, .8rem) clamp(.4rem, 1vw, .6rem); text-align: center; }
+    .paleta-chip .nombre { font-family: var(--fuente-display); font-size: clamp(.95rem, 2vh, 1.15rem); color: var(--texto-oscuro); font-weight: 700; }
+    .paleta-chip .hex { font-size: clamp(.76rem, 1.55vh, .92rem); color: var(--gris-oscuro); font-family: monospace; margin-top: 3px; }
+    .fuentes-row { display: flex; gap: clamp(.8rem, 2vw, 1.5rem); justify-content: center; flex-wrap: wrap; }
+    .fuente-card { background: var(--blanco); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(.65rem, 1.8vh, 1.1rem) clamp(1.05rem, 2.4vw, 1.7rem); text-align: center; box-shadow: var(--sombra); }
+    .fuente-card .muestra { font-size: clamp(1.5rem, 3.6vh, 2.3rem); margin-bottom: 3px; }
+    .fuente-card .muestra.display { font-family: var(--fuente-display); font-weight: 700; color: var(--azul-marino); }
+    .fuente-card .muestra.cuerpo { font-family: var(--fuente-cuerpo); color: var(--texto-oscuro); font-weight: 300; }
+    .fuente-card .etiqueta-fuente { font-size: clamp(.82rem, 1.75vh, .98rem); color: var(--gris-oscuro); letter-spacing: .05em; text-transform: uppercase; }
+
+    /* Informe de costos y gastos */
+    .costos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(1.2rem, 2.6vw, 2.2rem); width: 100%; }
+    .costo-item { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; border-bottom: 1px solid rgba(255,255,255,.15); padding: clamp(.28rem, .75vh, .5rem) 0; }
+    .costo-item .desc { font-size: clamp(.72rem, 1.5vh, .92rem); color: rgba(255,255,255,.7); line-height: 1.25; text-align: left; }
+    .costo-item .valor { font-size: clamp(.76rem, 1.55vh, .95rem); color: var(--blanco); font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+    .costos-total {
+      display: flex; justify-content: space-between; align-items: center; width: 100%;
+      background: linear-gradient(135deg, rgba(0,180,216,.22), rgba(45,90,160,.22));
+      border: 1px solid rgba(0,180,216,.4); border-radius: var(--radio);
+      padding: clamp(.55rem, 1.5vh, .95rem) clamp(1rem, 2vw, 1.6rem); margin-top: clamp(.3rem, .9vh, .6rem);
+    }
+    .costos-total .etiqueta { font-size: clamp(.85rem, 1.8vh, 1.1rem); letter-spacing: .08em; text-transform: uppercase; font-weight: 800; color: var(--cyan-suave); }
+    .costos-total .monto { font-family: var(--fuente-display); font-size: clamp(1.25rem, 2.9vh, 1.8rem); font-weight: 700; color: var(--blanco); }
+
+    /* Fase / anuncio */
+    .fase-badge {
+      background: linear-gradient(135deg, var(--cyan), var(--azul-claro)); color: var(--azul-marino);
+      font-family: var(--fuente-display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .5rem 1.3rem; border-radius: 100px; font-size: clamp(.85rem, 1.9vh, 1.05rem);
+    }
+
+    /* Final / gracias */
+    .final { text-align: center; align-items: center; }
+    .final .logo-final {
+      width: clamp(84px, 15vh, 130px); height: clamp(84px, 15vh, 130px); border-radius: 50%; object-fit: contain;
+      background: var(--blanco); padding: 6px; border: 3px solid var(--cyan); margin: 0 auto clamp(.4rem, 1vh, .8rem);
+      box-shadow: 0 0 50px rgba(0,180,216,.4);
+    }
+    .final h2 { color: var(--blanco); }
+    .btn-cyan-final {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--cyan); color: var(--azul-marino);
+      padding: clamp(.9rem, 2.3vh, 1.3rem) clamp(1.7rem, 3.4vw, 2.5rem);
+      border-radius: 999px; text-decoration: none; font-family: var(--fuente-display); font-weight: 700;
+      font-size: clamp(1.05rem, 2.3vh, 1.3rem);
+      box-shadow: 0 10px 30px rgba(0,180,216,.4); margin: 0 auto;
+    }
+
+    /* ═══ Controles de navegación ═══ */
+    .nav-controles {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      padding: clamp(.6rem, 1.6vh, 1rem) 1rem calc(clamp(.6rem, 1.6vh, 1rem) + env(safe-area-inset-bottom, 0px));
+      background: linear-gradient(to top, rgba(5,12,25,.75), transparent);
+    }
+    .nav-btn {
+      width: clamp(32px, 6vh, 40px); height: clamp(32px, 6vh, 40px); border-radius: 50%; border: none;
+      background: linear-gradient(135deg, var(--cyan), var(--azul-claro)); color: var(--blanco);
+      font-size: clamp(.9rem, 2vh, 1.1rem); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,180,216,.4);
+      transition: transform 0.25s cubic-bezier(0.34,1.5,0.64,1); flex-shrink: 0;
+    }
+    .nav-btn:hover { transform: scale(1.1); }
+    .nav-btn:active { transform: scale(0.92); }
+    .nav-btn.deshabilitado { opacity: 0.3; pointer-events: none; }
+
+    .nav-puntos { display: flex; gap: 5px; flex-wrap: wrap; max-width: 44vw; justify-content: center; }
+    .nav-punto { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.25); border: none; cursor: pointer; padding: 0; transition: transform 0.25s, background 0.25s; flex-shrink: 0; }
+    .nav-punto.activo { background: var(--cyan); transform: scale(1.5); }
+    .nav-contador { font-size: clamp(.6rem, 1.3vh, .72rem); color: rgba(255,255,255,.6); font-weight: 700; letter-spacing: .05em; min-width: 40px; text-align: center; }
+
+    @media (max-width: 680px) {
+      .integrantes-grid-3, .dos-tarjetas, .mv-grid, .segmento-grid, .recursos-grid { grid-template-columns: 1fr; }
+      .dos-col, .dos-col.invertido { display: flex; flex-direction: column; justify-content: center; gap: .8rem; }
+      .dos-col img { width: 100%; height: auto; flex: 1 1 auto; min-height: 130px; }
+      .dos-col .col-texto, .dos-col > .lead { flex: 0 0 auto; }
+      .dos-col img.logo-corporativo { width: auto; height: clamp(150px, 34vh, 440px); aspect-ratio: 1/1; flex: 0 0 auto; }
+      .paleta-grid { grid-template-columns: repeat(3, 1fr); }
+      .nav-puntos { max-width: 38vw; }
+      .slide { padding: clamp(3.4rem, 8vh, 4.6rem) 1rem clamp(4.4rem, 11vh, 5.6rem); }
+      .slide h2 { font-size: clamp(1.55rem, 5.6vh, 2.5rem); }
+      .slide-inner { gap: clamp(.5rem, 1.5vh, 1rem); }
+      .portada h1 { font-size: clamp(2.1rem, 12.5vw, 4rem); }
+      .portada .subt { font-size: clamp(1rem, 4.4vw, 1.3rem); }
+      .lead { font-size: clamp(.9rem, 2.3vh, 1.15rem); line-height: 1.4; }
+      .tarjeta p { font-size: clamp(1rem, 2.5vh, 1.28rem); }
+
+      .equipo-foto-grupal { max-width: 100%; height: clamp(130px, 26vh, 260px); }
+      .integrantes-grid-3 { gap: .55rem; }
+      .miembro-mini { padding: .55rem .7rem; }
+      .miembro-mini .nombre { font-size: clamp(.85rem, 2vh, 1rem); }
+      .miembro-mini .skill { font-size: clamp(.66rem, 1.5vh, .78rem); }
+      .deco-icon { display: none; }
+    }
+
+    @media (max-width: 680px) {
+      .slide { padding: clamp(2.8rem, 7vh, 3.8rem) 1.1rem clamp(3.8rem, 9.5vh, 4.8rem); }
+      .slide-inner { gap: clamp(.4rem, 1.2vh, .7rem); }
+      .slide h2 { font-size: clamp(1.3rem, 5.2vh, 2rem); line-height: 1.08; }
+      .eyebrow { font-size: clamp(.68rem, 1.9vh, .82rem); }
+      .lead { font-size: clamp(.8rem, 2.2vh, .98rem); line-height: 1.42; }
+      .tarjeta { padding: .65rem .9rem; }
+      .tarjeta p { font-size: clamp(.8rem, 2vh, .96rem); line-height: 1.4; }
+      .tarjeta h3 { font-size: clamp(.92rem, 2.4vh, 1.08rem); margin-bottom: .3rem; }
+      .dos-tarjetas { gap: .55rem; }
+      .dos-col img { min-height: 90px; }
+      .chips span { font-size: clamp(.7rem, 1.9vh, .85rem); padding: .3rem .6rem; }
+      .objetivo-general { padding: .55rem .85rem; font-size: clamp(.85rem, 2vh, 1rem); }
+      .objetivo-general .etiqueta { font-size: .68rem; }
+      .lista-check { gap: .3rem; }
+      .lista-check li { padding: .4rem .7rem; font-size: clamp(.78rem, 1.9vh, .92rem); gap: 8px; }
+      .mv-card, .segmento-card { padding: .6rem .8rem; }
+      .mv-card .mv-icon, .segmento-card .icono { font-size: clamp(1.2rem, 2.8vh, 1.55rem); margin-bottom: .25rem; }
+      .mv-card h3, .segmento-card h3 { font-size: clamp(1rem, 2.4vh, 1.2rem); margin-bottom: .25rem; }
+      .mv-card p, .segmento-card p { font-size: clamp(.76rem, 1.9vh, .9rem); line-height: 1.35; }
+      .servicio-bloque { padding: .35rem .55rem; gap: 2px; }
+      .servicio-bloque .icono { width: clamp(26px, 4.6vh, 34px); height: clamp(26px, 4.6vh, 34px); font-size: clamp(.92rem, 2vh, 1.1rem); margin-bottom: 0; }
+      .servicio-bloque h3 { font-size: clamp(.84rem, 2vh, .98rem); margin-bottom: 0; }
+      .servicio-bloque p { font-size: clamp(.68rem, 1.6vh, .78rem); line-height: 1.24; }
+      .recursos-grid { grid-template-columns: 1fr 1fr; gap: .32rem; }
+      .recursos-grid .servicio-bloque { padding: .28rem .38rem; gap: 2px; }
+      .recursos-grid .servicio-bloque .icono { width: 22px; height: 22px; font-size: .78rem; }
+      .recursos-grid .servicio-bloque h3 { font-size: .76rem; }
+      .recursos-grid .servicio-bloque p { font-size: .64rem; line-height: 1.18; }
+      .equipo-tecnico-titulo { font-size: .68rem; }
+      .equipo-tecnico-grid { gap: .45rem; }
+      .equipo-tecnico-card img { width: clamp(54px, 15vw, 90px); height: clamp(72px, 20vw, 120px); }
+      .equipo-tecnico-card span { font-size: .62rem; max-width: 5.6rem; line-height: 1.15; }
+      .costos-grid { gap: 0 .7rem; }
+      .costo-item { padding: .18rem 0; gap: .3rem; }
+      .costo-item .desc { font-size: .62rem; line-height: 1.15; }
+      .costo-item .valor { font-size: .64rem; }
+      .costos-total { padding: .4rem .7rem; }
+      .costos-total .etiqueta { font-size: .66rem; }
+      .costos-total .monto { font-size: 1.02rem; }
+      .qr-panel { gap: 1rem; }
+      .qr-card img { height: clamp(140px, 38vw, 240px); }
+      .qr-card span { font-size: .8rem; max-width: 9.2rem; }
+      .paleta-grid { gap: .4rem; }
+      .paleta-chip .swatch { height: 44px; }
+      .paleta-chip .info { padding: .3rem .3rem; }
+      .paleta-chip .nombre { font-size: .76rem; }
+      .paleta-chip .hex { font-size: .64rem; margin-top: 1px; }
+      .fuentes-row { gap: .5rem; }
+      .fuente-card { padding: .45rem .8rem; }
+      .fuente-card .muestra { font-size: 1.15rem; margin-bottom: 1px; }
+      .fuente-card .etiqueta-fuente { font-size: .66rem; }
+      .deco-icon { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="deck" id="deck">
+
+    <!-- ═══ 1. PORTADA ═══ -->
+    <section class="slide" data-bg="1">
+      <div class="slide-inner portada">
+        <div class="portada-logo-wrap">
+          <img class="portada-logo" src="../img/logo.png" alt="Logo Proyecto STEM" />
+          <span class="portada-sep">·</span>
+          <img class="portada-escudo" src="../img/escudo.png" alt="Escudo Institución Educativa La Divina Pastora" />
+        </div>
+        <p class="eyebrow"><span class="rec-dot"></span> Sustentación de proyecto · SENA / IEDP</p>
+        <h1><span>Proyecto</span><br>STEM</h1>
+        <p class="subt">Difusión a través de redes sociales del enfoque STEM en la Institución Educativa La Divina Pastora</p>
+        <div class="chips">
+          <span>🤖 Robótica</span>
+          <span>🖨️ Impresión 3D</span>
+          <span>⚡ Electrónica</span>
+          <span>🔬 Cortadora Láser CO₂</span>
+          <span>💻 Programación</span>
+        </div>
+        <p class="portada-footer">Técnica en Integración de Contenidos Digitales · SENA · Institución Educativa La Divina Pastora · Cúcuta</p>
+      </div>
+    </section>
+
+    <!-- ═══ 2. INTEGRANTES ═══ -->
+    <section class="slide" data-bg="2">
+      <div class="slide-inner">
+        <p class="eyebrow">01 — El equipo</p>
+        <h2>Integrantes</h2>
+        <img class="equipo-foto-grupal" src="img/equipo-integrantes.jpg" alt="Nailis, Lina y Genessis, el equipo del Proyecto STEM" />
+        <div class="integrantes-grid-3">
+          <div class="miembro-mini">
+            <div class="nombre">Nailis Rodríguez</div>
+            <div class="rol">Toma de fotografías</div>
+            <p class="skill">Bachillerato · <b>Conocimientos:</b> manejo de máquinas láser y 3D</p>
+          </div>
+          <div class="miembro-mini">
+            <div class="nombre">Lina Duarte</div>
+            <div class="rol">Edición de imágenes</div>
+            <p class="skill">Bachillerato · <b>Conocimientos:</b> Photoshop y máquina 3D</p>
+          </div>
+          <div class="miembro-mini">
+            <div class="nombre">Genessis Cassiani</div>
+            <div class="rol">Diseño de logos e infografías</div>
+            <p class="skill">Bachillerato · <b>Conocimientos:</b> máquina 3D y láser</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. NECESIDAD E IDEA ═══ -->
+    <section class="slide" data-bg="3">
+      <div class="slide-inner">
+        <p class="eyebrow">02 — El punto de partida</p>
+        <h2>Descripción de la <em>necesidad e idea</em></h2>
+        <div class="dos-tarjetas">
+          <div class="tarjeta">
+            <h3>🔍 La necesidad</h3>
+            <p>Nos preparamos para un futuro lleno de retos. Muchos piensan que STEM es "difícil" o "aburrido", y necesitamos despertar la curiosidad.</p>
+          </div>
+          <div class="tarjeta">
+            <h3>💡 La solución</h3>
+            <p>Hacer que STEM sea divertido, práctico y cercano a la vida diaria: no es solo números, también es arte, diseño e imaginación. Diseñamos videojuegos, aplicaciones e impresiones 3D.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 4. IDEA DE SOLUCIÓN INNOVADORA ═══ -->
+    <section class="slide" data-bg="4">
+      <div class="slide-inner">
+        <p class="eyebrow">03 — Nuestra propuesta</p>
+        <h2>Idea de solución <em>innovadora</em></h2>
+        <div class="dos-col">
+          <div class="col-texto">
+            <p class="lead">Muchos estudiantes creen que las matemáticas son aburridas y difíciles. Las hacemos más divertidas con experimentos, juegos y tecnología accesible, resolviendo problemas reales de forma práctica y motivadora.</p>
+            <p class="lead">No nos quedamos en la teoría: incluimos a todos y generamos soluciones concretas, combinando creatividad, accesibilidad y tecnología para un impacto positivo en la comunidad.</p>
+          </div>
+          <img src="img/impresion-3d.jpg" alt="Estudiantes trabajando con la impresora 3D del colegio" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 5. OBJETIVOS ═══ -->
+    <section class="slide" data-bg="5">
+      <span class="deco-icon" aria-hidden="true" style="top:10%; left:6%; animation-delay:.2s;">🤖</span>
+      <span class="deco-icon" aria-hidden="true" style="bottom:14%; right:7%; animation-delay:1.4s;">🔬</span>
+      <span class="deco-icon" aria-hidden="true" style="top:14%; right:9%; font-size:clamp(1.3rem,3vh,2rem); animation-delay:2.4s;">🖨️</span>
+      <div class="slide-inner">
+        <p class="eyebrow">04 — Hacia dónde vamos</p>
+        <h2>Objetivos</h2>
+        <div class="objetivo-general">
+          <span class="etiqueta">🎯 Objetivo general</span>
+          Fomentar el aprendizaje con enfoque STEM mediante actividades prácticas e innovadoras que motiven a los estudiantes y desarrollen habilidades tecnológicas.
+        </div>
+        <p style="font-family:var(--fuente-display); font-size:clamp(.9rem,1.9vh,1.05rem); letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:var(--cyan-suave);">Objetivos específicos</p>
+        <ul class="lista-check">
+          <li>Motivar a todos los estudiantes a participar en el aprendizaje</li>
+          <li>Usar herramientas digitales sencillas para fomentar la creatividad</li>
+          <li>Evaluar los resultados y mejorar las estrategias de aprendizaje</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ 6. JUSTIFICACIÓN ═══ -->
+    <section class="slide" data-bg="6">
+      <span class="deco-icon" aria-hidden="true" style="top:12%; right:6%; animation-delay:.6s;">💡</span>
+      <span class="deco-icon" aria-hidden="true" style="bottom:16%; left:7%; animation-delay:1.8s;">⚙️</span>
+      <span class="deco-icon" aria-hidden="true" style="bottom:12%; right:11%; font-size:clamp(1.3rem,3vh,2rem); animation-delay:3s;">💡</span>
+      <div class="slide-inner">
+        <p class="eyebrow">05 — Por qué vale la pena</p>
+        <h2>Justificación</h2>
+        <div class="tarjeta">
+          <p>Este proyecto busca motivar el aprendizaje de STEM de manera práctica e innovadora, mostrando estas áreas como algo divertido y útil para la vida. Su valor está en combinar creatividad, tecnología y proyectos reales que desarrollan habilidades para el futuro y generan un impacto positivo en la comunidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 7. MISIÓN Y VISIÓN ═══ -->
+    <section class="slide" data-bg="7">
+      <div class="slide-inner">
+        <p class="eyebrow">06 — Nuestra identidad</p>
+        <h2>Misión &amp; Visión</h2>
+        <div class="mv-grid">
+          <div class="mv-card">
+            <span class="mv-icon">🎯</span>
+            <h3>Nuestra Misión</h3>
+            <p>Promover el enfoque STEM mediante contenido digital educativo en redes sociales, despertando el interés de los estudiantes por la ciencia, la tecnología, la ingeniería y las matemáticas, y fortaleciendo sus habilidades tecnológicas y de pensamiento crítico.</p>
+          </div>
+          <div class="mv-card">
+            <span class="mv-icon">🚀</span>
+            <h3>Nuestra Visión</h3>
+            <p>Ser reconocidos en la institución como una iniciativa innovadora que fomenta el aprendizaje STEM con contenidos digitales creativos, inspirando a más estudiantes a aprender, experimentar y compartir proyectos de ciencia y tecnología.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 8. TECNOLOGÍAS ═══ -->
+    <section class="slide" data-bg="8">
+      <div class="slide-inner">
+        <p class="eyebrow">07 — Cómo lo hacemos</p>
+        <h2>Tecnologías a <em>emplear</em></h2>
+        <div class="dos-col invertido">
+          <img src="img/impresion-3d.jpg" alt="Estudiantes usando la impresora 3D" />
+          <div class="col-texto">
+            <p class="lead">Herramientas digitales y software interactivo, junto con materiales de bajo costo, equipos básicos de laboratorio y recursos reciclables:</p>
+            <div class="chips">
+              <span>🎨 Adobe Photoshop</span>
+              <span>🎬 Adobe Premiere</span>
+              <span>🎵 TikTok</span>
+              <span>📷 Instagram</span>
+              <span>🖌️ Canva</span>
+              <span>🌐 Página web</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 9. RECURSOS ═══ -->
+    <section class="slide" data-bg="9">
+      <div class="slide-inner">
+        <p class="eyebrow">08 — Lo que necesitamos</p>
+        <h2>Recursos</h2>
+        <div class="recursos-grid">
+          <div class="servicio-bloque"><span class="icono">🧑‍🤝‍🧑</span><div><h3>Humanos</h3><p>Docentes, estudiantes, asesores y voluntarios que apoyan el proceso.</p></div></div>
+          <div class="servicio-bloque"><span class="icono">💻</span><div><h3>Tecnológicos</h3><p>Computadores, tablets, celulares y conexión a internet.</p></div></div>
+          <div class="servicio-bloque"><span class="icono">🧰</span><div><h3>Materiales</h3><p>Cartón, botellas, cables, sensores y kits de robótica.</p></div></div>
+          <div class="servicio-bloque"><span class="icono">📚</span><div><h3>Didácticos</h3><p>Guías, cuadernos, aplicaciones interactivas y plataformas virtuales.</p></div></div>
+          <div class="servicio-bloque"><span class="icono">💰</span><div><h3>Financieros</h3><p>Apoyo económico para la compra de insumos y el mantenimiento.</p></div></div>
+          <div class="servicio-bloque"><span class="icono">🏫</span><div><h3>Espacios físicos</h3><p>El aula de STEM de la institución.</p></div></div>
+        </div>
+        <p class="equipo-tecnico-titulo">🎛️ Equipo técnico disponible</p>
+        <div class="equipo-tecnico-grid">
+          <div class="equipo-tecnico-card">
+            <img src="img/equipo-camara.jpg" alt="Cámara Sony con lente, baterías, cargador y correa" />
+            <span>Cámara Sony + accesorios</span>
+          </div>
+          <div class="equipo-tecnico-card">
+            <img src="img/equipo-microfono.jpg" alt="Micrófono lavalier inalámbrico" />
+            <span>Micrófono inalámbrico</span>
+          </div>
+          <div class="equipo-tecnico-card">
+            <img src="img/equipo-audifonos.jpg" alt="Audífonos de monitoreo" />
+            <span>Audífonos de monitoreo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 10. PRODUCTOS Y SERVICIOS ═══ -->
+    <section class="slide" data-bg="10">
+      <div class="slide-inner">
+        <p class="eyebrow">09 — Lo que vamos a construir</p>
+        <h2>Descripción de <em>productos y servicios</em></h2>
+        <div class="dos-col">
+          <div class="col-texto" style="align-items: stretch;">
+            <div class="servicio-bloque">
+              <span class="icono">🎬</span>
+              <div><h3>Contenido multimedia</h3><p>Cápsulas en video documentando los inventos de los estudiantes, animaciones explicativas de principios STEM y posters de eventos.</p></div>
+            </div>
+            <div class="servicio-bloque">
+              <span class="icono">🌐</span>
+              <div><h3>Portal web de divulgación</h3><p>Plataforma interactiva con banco de proyectos escolares, prototipos de robótica y ferias de ciencia.</p></div>
+            </div>
+          </div>
+          <img src="img/impresion-3d.jpg" alt="Estudiantes documentando un proyecto de impresión 3D" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 11. IMAGEN CORPORATIVA ═══ -->
+    <section class="slide" data-bg="11">
+      <div class="slide-inner">
+        <p class="eyebrow">10 — Nuestra marca</p>
+        <h2>Imagen <em>Corporativa</em></h2>
+        <div class="dos-col">
+          <p class="lead">
+            El logo combina azul, negro, blanco y gris para transmitir una imagen moderna y tecnológica: el azul representa conocimiento, confianza e innovación; el negro aporta elegancia, fuerza y orden; el blanco da claridad y equilibrio visual; y el gris complementa con un toque neutral asociado a la tecnología.
+          </p>
+          <img class="logo-corporativo" src="../img/logo.png" alt="Logo del Proyecto STEM" style="background:var(--blanco); padding:1.2rem; border-radius:50%; object-fit:contain; margin:0 auto; align-self:center; justify-self:center;" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 12. ETIQUETA ═══ -->
+    <section class="slide" data-bg="12">
+      <div class="slide-inner">
+        <p class="eyebrow">11 — Piezas de comunicación</p>
+        <h2>Etiqueta</h2>
+        <p class="lead">Poster promocional de eventos y proyectos STEM</p>
+        <div class="etiqueta-figura">
+          <img src="img/etiqueta-evento.jpg" alt="Estudiantes en un stand de feria STEM con banner promocional" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 13. SEGMENTO OBJETIVO ═══ -->
+    <section class="slide" data-bg="13">
+      <div class="slide-inner">
+        <p class="eyebrow">12 — A quién llegamos</p>
+        <h2>Segmento <em>Objetivo</em></h2>
+        <div class="segmento-grid">
+          <div class="segmento-card">
+            <span class="icono">🌎</span>
+            <h3>Ubicación</h3>
+            <p>Comunidad de la Institución Educativa La Divina Pastora: directivos, padres de familia y docentes.</p>
+          </div>
+          <div class="segmento-card">
+            <span class="icono">🎓</span>
+            <h3>Perfil</h3>
+            <p>Estudiantes, docentes e investigadores.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 14. VENTAJAS COMPETITIVAS ═══ -->
+    <section class="slide" data-bg="14">
+      <div class="slide-inner">
+        <p class="eyebrow">13 — Lo que nos distingue</p>
+        <h2>Ventajas <em>Competitivas</em></h2>
+        <div class="tarjeta">
+          <p>Somos la primera promoción de la Institución Educativa La Divina Pastora con enfoque STEM: una propuesta pedagógica innovadora que fortalece el pensamiento crítico, la creatividad, la investigación y la resolución de problemas. Este nuevo enfoque prepara a los estudiantes para los retos del mundo actual y marca el inicio de una nueva etapa en la historia de la institución.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 15. REDES SOCIALES ═══ -->
+    <section class="slide" data-bg="15">
+      <div class="slide-inner">
+        <p class="eyebrow">14 — Síguenos</p>
+        <h2>Redes <em>Sociales</em></h2>
+        <div class="qr-panel">
+          <div class="qr-card">
+            <img src="img/qr-tiktok.jpg" alt="Código QR al TikTok @stem_iedp" />
+            <span>🎵 Escanea y síguenos en TikTok</span>
+          </div>
+          <div class="qr-card">
+            <img src="img/qr-instagram.jpg" alt="Código QR al Instagram @stem_iedp" />
+            <span>📷 Escanea y síguenos en Instagram</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 16. FASE 3 ═══ -->
+    <section class="slide" data-bg="16">
+      <div class="slide-inner">
+        <p class="eyebrow">15 — Lo que viene</p>
+        <span class="fase-badge">Fase 3</span>
+        <h2>Producción y <em>comercialización</em></h2>
+        <p class="lead">Producción y comercialización del producto y del servicio.</p>
+      </div>
+    </section>
+
+    <!-- ═══ 17. PALETA DE COLORES Y ESTILO ═══ -->
+    <section class="slide" data-bg="17">
+      <div class="slide-inner">
+        <p class="eyebrow">16 — Nuestra identidad visual</p>
+        <h2>Paleta de <em>colores y estilo</em></h2>
+        <p class="lead" style="max-width:56rem;">Azul marino, cyan tecnológico y grises neutros sobre una cuadrícula de plano técnico: la estética de un laboratorio digital.</p>
+        <div class="paleta-grid">
+          <div class="paleta-chip"><div class="swatch" style="background:#1a2d5a;"></div><div class="info"><div class="nombre">Azul marino</div><div class="hex">#1A2D5A</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#2d5aa0;"></div><div class="info"><div class="nombre">Azul claro</div><div class="hex">#2D5AA0</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#00b4d8;"></div><div class="info"><div class="nombre">Cyan</div><div class="hex">#00B4D8</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#90e0ef;"></div><div class="info"><div class="nombre">Cyan suave</div><div class="hex">#90E0EF</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#f0f4f8;"></div><div class="info"><div class="nombre">Gris fondo</div><div class="hex">#F0F4F8</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#0f1d3a;"></div><div class="info"><div class="nombre">Texto oscuro</div><div class="hex">#0F1D3A</div></div></div>
+        </div>
+        <div class="fuentes-row">
+          <div class="fuente-card"><div class="muestra display">Space Grotesk</div><div class="etiqueta-fuente">Tipografía de títulos</div></div>
+          <div class="fuente-card"><div class="muestra cuerpo">Inter</div><div class="etiqueta-fuente">Tipografía de texto</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 18. INFORME DE COSTOS Y GASTOS ═══ -->
+    <section class="slide" data-bg="18">
+      <div class="slide-inner">
+        <p class="eyebrow">17 — Presupuesto del proyecto</p>
+        <h2>Informe de <em>costos y gastos</em></h2>
+        <div class="costos-grid">
+          <div class="costo-item"><span class="desc">Cámara Sony ZV-E10</span><span class="valor">$3.375.962</span></div>
+          <div class="costo-item"><span class="desc">Tarjeta SD ADATA 128GB (x2)</span><span class="valor">$211.098</span></div>
+          <div class="costo-item"><span class="desc">Trípode Beston B57-17</span><span class="valor">$1.277.837</span></div>
+          <div class="costo-item"><span class="desc">Batería recargable de la cámara</span><span class="valor">$365.811</span></div>
+          <div class="costo-item"><span class="desc">Cargador de batería para cámara</span><span class="valor">$472.469</span></div>
+          <div class="costo-item"><span class="desc">Grabadora Tascam DR-05XP</span><span class="valor">$1.072.498</span></div>
+          <div class="costo-item"><span class="desc">Memoria para grabadora de audio</span><span class="valor">$76.923</span></div>
+          <div class="costo-item"><span class="desc">Micrófonos de solapa inalámbricos</span><span class="valor">$1.430.473</span></div>
+          <div class="costo-item"><span class="desc">Audífonos Behringer BH470</span><span class="valor">$327.012</span></div>
+          <div class="costo-item"><span class="desc">Cargador de pilas Beston BST-C8006B</span><span class="valor">$69.606</span></div>
+          <div class="costo-item"><span class="desc">Set de pilas recargables AA/AAA</span><span class="valor">$152.541</span></div>
+          <div class="costo-item"><span class="desc">Micrófono Boom</span><span class="valor">$1.296.443</span></div>
+          <div class="costo-item"><span class="desc">Portátil HP PB461 + licencia</span><span class="valor">$2.615.330</span></div>
+          <div class="costo-item"><span class="desc">Disco duro externo 2TB</span><span class="valor">$393.852</span></div>
+        </div>
+        <div class="costos-total">
+          <span class="etiqueta">Total invertido</span>
+          <span class="monto">$13.137.855</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 19. CIERRE ═══ -->
+    <section class="slide" data-bg="19">
+      <div class="slide-inner final">
+        <img class="logo-final" src="../img/logo.png" alt="Proyecto STEM" />
+        <p class="eyebrow"><span class="rec-dot"></span> GRACIAS POR SU ATENCIÓN</p>
+        <h2>¡Gracias!</h2>
+        <p class="subt">Proyecto STEM — documentando la innovación tecnológica de nuestra institución.<br>Técnica en Integración de Contenidos Digitales · SENA, IEDP La Divina Pastora.</p>
+        <a class="btn-cyan-final" href="https://www.instagram.com/stem_iedp" target="_blank" rel="noopener noreferrer">📷 @stem_iedp</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ Controles de navegación ═══ -->
+  <div class="nav-controles">
+    <button class="nav-btn" id="btnPrev" aria-label="Diapositiva anterior">‹</button>
+    <div class="nav-puntos" id="navPuntos"></div>
+    <button class="nav-btn" id="btnNext" aria-label="Siguiente diapositiva">›</button>
+    <span class="nav-contador" id="navContador">1 / 19</span>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const total = slides.length;
+    let actual = 0;
+
+    const puntosWrap = document.getElementById('navPuntos');
+    slides.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'nav-punto' + (i === 0 ? ' activo' : '');
+      btn.setAttribute('aria-label', `Ir a la diapositiva ${i + 1}`);
+      btn.addEventListener('click', () => irA(i));
+      puntosWrap.appendChild(btn);
+    });
+    const puntos = Array.from(document.querySelectorAll('.nav-punto'));
+
+    function actualizarUI() {
+      puntos.forEach((p, i) => p.classList.toggle('activo', i === actual));
+      document.getElementById('navContador').textContent = `${actual + 1} / ${total}`;
+      document.getElementById('btnPrev').classList.toggle('deshabilitado', actual === 0);
+      document.getElementById('btnNext').classList.toggle('deshabilitado', actual === total - 1);
+    }
+
+    function irA(indice) {
+      indice = Math.max(0, Math.min(total - 1, indice));
+      if (indice === actual) return;
+      const direccion = indice > actual ? 1 : -1;
+
+      slides.forEach((s, i) => {
+        s.classList.remove('activa', 'saliendo-izq', 'saliendo-der');
+        if (i === actual) {
+          s.classList.add(direccion > 0 ? 'saliendo-izq' : 'saliendo-der');
+        }
+      });
+
+      actual = indice;
+      slides[actual].classList.add('activa');
+      actualizarUI();
+    }
+
+    slides[0].classList.add('activa');
+    actualizarUI();
+
+    document.getElementById('btnPrev').addEventListener('click', () => irA(actual - 1));
+    document.getElementById('btnNext').addEventListener('click', () => irA(actual + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') irA(actual + 1);
+      if (e.key === 'ArrowLeft') irA(actual - 1);
+    });
+
+    /* Navegación táctil (swipe horizontal) */
+    let touchStartX = 0, touchStartY = 0;
+    const deck = document.getElementById('deck');
+
+    deck.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    deck.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) irA(actual + 1); else irA(actual - 1);
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
