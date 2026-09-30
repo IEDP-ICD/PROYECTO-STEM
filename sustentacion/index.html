@@ -191,7 +191,7 @@
     }
     .miembro-card-v img {
       width: 100%; height: clamp(150px, 34vh, 360px); flex: 0 0 auto;
-      object-fit: cover; border-bottom: 3px solid var(--cyan);
+      object-fit: cover; object-position: center 15%; border-bottom: 3px solid var(--cyan);
     }
     .miembro-card-v .info { padding: clamp(.7rem, 1.8vh, 1.2rem) clamp(.7rem, 1.5vw, 1.1rem); text-align: center; flex: 1 1 auto; min-height: 0; overflow: hidden; }
     .miembro-card-v .nombre { font-family: var(--fuente-display); font-weight: 700; color: var(--texto-oscuro); font-size: clamp(1.02rem, 2.3vh, 1.3rem); line-height: 1.2; }
@@ -207,7 +207,8 @@
     .dos-col img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radio); box-shadow: var(--sombra); border: 3px solid var(--cyan); }
     .dos-col .col-texto { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: clamp(.4rem, 1.2vh, .8rem); min-height: 0; }
     .dos-col > .lead { display: flex; flex-direction: column; justify-content: center; min-height: 0; }
-    .logo-corporativo { width: auto; height: clamp(200px, 44vh, 440px); aspect-ratio: 1/1; flex: 0 0 auto; }
+    .logo-full-figura { width: 100%; flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+    .logo-corporativo { width: auto; height: clamp(260px, 62vh, 560px); aspect-ratio: 1/1; flex: 0 0 auto; }
 
     .dos-tarjetas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.8rem, 2vw, 1.4rem); }
 
@@ -291,6 +292,17 @@
     .etiqueta-figura { width: 100%; flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
     .etiqueta-figura img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: var(--radio); box-shadow: var(--sombra); border: 3px solid var(--cyan); }
 
+    /* Etiqueta: poster + miniaturas de videos */
+    .etiqueta-layout { display: flex; gap: clamp(.8rem, 2vw, 1.6rem); width: 100%; flex: 1 1 0; min-height: 0; align-items: stretch; }
+    .etiqueta-poster { flex: 0 0 30%; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+    .etiqueta-poster img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: var(--radio); box-shadow: var(--sombra); border: 3px solid var(--cyan); }
+    .etiqueta-videos-grid {
+      flex: 1 1 0; min-width: 0; min-height: 0; height: 100%; display: grid;
+      grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(3, 1fr);
+      gap: clamp(.3rem, .8vw, .55rem);
+    }
+    .etiqueta-videos-grid img { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: calc(var(--radio) * .6); box-shadow: var(--sombra); border: 2px solid var(--cyan); }
+
     /* Panel de QR — grandes, para escanear en vivo */
     .qr-panel { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(1rem, 3vw, 2.2rem); width: 100%; flex: 1 1 0; min-height: 0; }
     .qr-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(.6rem, 1.6vh, 1rem); height: 100%; }
@@ -324,19 +336,6 @@
     }
     .costos-total .etiqueta { font-size: clamp(.85rem, 1.8vh, 1.1rem); letter-spacing: .08em; text-transform: uppercase; font-weight: 800; color: var(--cyan-suave); }
     .costos-total .monto { font-family: var(--fuente-display); font-size: clamp(1.25rem, 2.9vh, 1.8rem); font-weight: 700; color: var(--blanco); }
-
-    /* Fase / anuncio */
-    .fase-badge {
-      background: linear-gradient(135deg, var(--cyan), var(--azul-claro)); color: var(--azul-marino);
-      font-family: var(--fuente-display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      padding: .5rem 1.3rem; border-radius: 100px; font-size: clamp(.85rem, 1.9vh, 1.05rem);
-    }
-
-    /* Imagen de acento para diapositivas con poco texto */
-    .imagen-acento {
-      width: auto; height: clamp(160px, 36vh, 380px); max-width: 90%;
-      object-fit: cover; border-radius: var(--radio); box-shadow: var(--sombra); border: 3px solid var(--cyan);
-    }
 
     /* Final / gracias */
     .final { text-align: center; align-items: center; }
@@ -384,7 +383,7 @@
       .dos-col, .dos-col.invertido { display: flex; flex-direction: column; justify-content: center; gap: .8rem; }
       .dos-col img { width: 100%; height: auto; flex: 1 1 auto; min-height: 130px; }
       .dos-col .col-texto, .dos-col > .lead { flex: 0 0 auto; }
-      .dos-col img.logo-corporativo { width: auto; height: clamp(150px, 34vh, 440px); aspect-ratio: 1/1; flex: 0 0 auto; }
+      .logo-full-figura img.logo-corporativo { width: auto; height: clamp(180px, 46vh, 460px); aspect-ratio: 1/1; flex: 0 0 auto; }
       .paleta-grid { grid-template-columns: repeat(3, 1fr); }
       .nav-puntos { max-width: 38vw; }
       .slide { padding: clamp(3.4rem, 8vh, 4.6rem) 1rem clamp(4.4rem, 11vh, 5.6rem); }
@@ -394,6 +393,10 @@
       .portada .subt { font-size: clamp(1rem, 4.4vw, 1.3rem); }
       .lead { font-size: clamp(.9rem, 2.3vh, 1.15rem); line-height: 1.4; }
       .tarjeta p { font-size: clamp(1rem, 2.5vh, 1.28rem); }
+
+      .etiqueta-layout { flex-direction: column; gap: .5rem; }
+      .etiqueta-poster { flex: 0 0 auto; height: clamp(70px, 16vh, 130px); }
+      .etiqueta-videos-grid { flex: 1 1 0; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(3, 1fr); gap: .3rem; }
 
       .integrantes-grid-3 { gap: .45rem; }
       .miembro-card-v img { height: clamp(90px, 20vh, 170px); }
@@ -625,9 +628,9 @@
           <div class="col-texto">
             <p class="lead">Herramientas digitales y software interactivo, junto con materiales de bajo costo, equipos básicos de laboratorio y recursos reciclables:</p>
             <div class="chips">
-              <span>🎨 Adobe Photoshop</span>
-              <span>🎬 Adobe Premiere</span>
+              <span>🎨 Adobe</span>
               <span>✂️ CapCut</span>
+              <span>🎥 Vidu</span>
               <span>🎵 TikTok</span>
               <span>📷 Instagram</span>
               <span>🖌️ Canva</span>
@@ -698,11 +701,8 @@
       <div class="slide-inner">
         <p class="eyebrow">10 — Nuestra marca</p>
         <h2>Imagen <em>Corporativa</em></h2>
-        <div class="dos-col">
-          <p class="lead">
-            El logo combina azul, negro, blanco y gris para transmitir una imagen moderna y tecnológica: el azul representa conocimiento, confianza e innovación; el negro aporta elegancia, fuerza y orden; el blanco da claridad y equilibrio visual; y el gris complementa con un toque neutral asociado a la tecnología.
-          </p>
-          <img class="logo-corporativo" src="../img/logo.png" alt="Logo del Proyecto STEM" style="background:var(--blanco); padding:1.2rem; border-radius:50%; object-fit:contain; margin:0 auto; align-self:center; justify-self:center;" />
+        <div class="logo-full-figura">
+          <img class="logo-corporativo" src="../img/logo.png" alt="Logo del Proyecto STEM" style="background:var(--blanco); padding:1.8rem; border-radius:50%; object-fit:contain; box-shadow:var(--sombra);" />
         </div>
       </div>
     </section>
@@ -712,9 +712,26 @@
       <div class="slide-inner">
         <p class="eyebrow">11 — Piezas de comunicación</p>
         <h2>Etiqueta</h2>
-        <p class="lead">Poster promocional de eventos y proyectos STEM</p>
-        <div class="etiqueta-figura">
-          <img src="img/etiqueta-evento.jpg" alt="Estudiantes en un stand de feria STEM con banner promocional" />
+        <p class="lead">Poster promocional y miniaturas de los videos de eventos y proyectos STEM</p>
+        <div class="etiqueta-layout">
+          <div class="etiqueta-poster">
+            <img src="img/etiqueta-evento.jpg" alt="Estudiantes en un stand de feria STEM con banner promocional" />
+          </div>
+          <div class="etiqueta-videos-grid">
+            <img src="../videos/equipo-stem-laboratorio.jpg" alt="Miniatura: Proyecto STEM — Ciencia, Creatividad e Innovación" />
+            <img src="../videos/semana-astronomia-planetario.jpg" alt="Miniatura: Semana de la Astronomía — Planetario Móvil" />
+            <img src="../videos/feria-stem-2026.jpg" alt="Miniatura: Feria STEM 2026" />
+            <img src="../videos/explorando-mundo-stem.jpg" alt="Miniatura: Explorando el mundo STEM" />
+            <img src="../videos/unidos-por-la-educacion.jpg" alt="Miniatura: Unidos por la Educación" />
+            <img src="../videos/enfoque-stem-institucion.jpg" alt="Miniatura: Enfoque STEM en nuestra institución educativa" />
+            <img src="../videos/carro-robotico.jpg" alt="Miniatura: Proyecto de Carro Robótico" />
+            <img src="../videos/feria-stem-2025.jpg" alt="Miniatura: Feria STEM 2025" />
+            <img src="../videos/innovacion-que-transforma.jpg" alt="Miniatura: Innovación que transforma" />
+            <img src="../videos/equipo-stem-robotica.jpg" alt="Miniatura: Equipo STEM en acción" />
+            <img src="../videos/clase-adobe-after-effects.jpg" alt="Miniatura: Clase de efectos en Adobe After Effects" />
+            <img src="../videos/simulador-fisica-gamificado.jpg" alt="Miniatura: Simulador de Física Gamificado" />
+            <img src="../videos/dia-mundial-del-agua.jpg" alt="Miniatura: Día Mundial del Agua" />
+          </div>
         </div>
       </div>
     </section>
@@ -751,7 +768,7 @@
           <img src="img/laser-escudo.jpg" alt="Escudo de la institución grabado en la cortadora láser" />
           <div class="col-texto">
             <div class="tarjeta">
-              <p>Somos la primera promoción de la Institución Educativa La Divina Pastora con enfoque STEM: una propuesta pedagógica innovadora que fortalece el pensamiento crítico, la creatividad, la investigación y la resolución de problemas. Este nuevo enfoque prepara a los estudiantes para los retos del mundo actual y marca el inicio de una nueva etapa en la historia de la institución.</p>
+              <p>Somos la primera promoción en documentar el enfoque STEM de la Institución Educativa La Divina Pastora: una propuesta pedagógica innovadora que fortalece el pensamiento crítico, la creatividad, la investigación y la resolución de problemas. Este nuevo enfoque prepara a los estudiantes para los retos del mundo actual y marca el inicio de una nueva etapa en la historia de la institución.</p>
             </div>
           </div>
         </div>
@@ -780,21 +797,10 @@
       </div>
     </section>
 
-    <!-- ═══ 16. FASE 3 ═══ -->
+    <!-- ═══ 16. PALETA DE COLORES Y ESTILO ═══ -->
     <section class="slide" data-bg="16">
       <div class="slide-inner">
-        <p class="eyebrow">15 — Lo que viene</p>
-        <span class="fase-badge">Fase 3</span>
-        <h2>Producción y <em>comercialización</em></h2>
-        <p class="lead">Producción y comercialización del producto y del servicio.</p>
-        <img class="imagen-acento" src="img/coleccion-figuras.jpg" alt="Colección de piezas producidas por el proyecto STEM" />
-      </div>
-    </section>
-
-    <!-- ═══ 17. PALETA DE COLORES Y ESTILO ═══ -->
-    <section class="slide" data-bg="17">
-      <div class="slide-inner">
-        <p class="eyebrow">16 — Nuestra identidad visual</p>
+        <p class="eyebrow">15 — Nuestra identidad visual</p>
         <h2>Paleta de <em>colores y estilo</em></h2>
         <p class="lead" style="max-width:56rem;">Azul marino, cyan tecnológico y grises neutros sobre una cuadrícula de plano técnico: la estética de un laboratorio digital.</p>
         <div class="paleta-grid">
@@ -812,10 +818,10 @@
       </div>
     </section>
 
-    <!-- ═══ 18. INFORME DE COSTOS Y GASTOS ═══ -->
-    <section class="slide" data-bg="18">
+    <!-- ═══ 17. INFORME DE COSTOS Y GASTOS ═══ -->
+    <section class="slide" data-bg="17">
       <div class="slide-inner">
-        <p class="eyebrow">17 — Presupuesto del proyecto</p>
+        <p class="eyebrow">16 — Presupuesto del proyecto</p>
         <h2>Informe de <em>costos y gastos</em></h2>
         <div class="costos-grid">
           <div class="costo-item"><span class="desc">Cámara Sony ZV-E10</span><span class="valor">$3.375.962</span></div>
@@ -836,6 +842,24 @@
         <div class="costos-total">
           <span class="etiqueta">Total invertido</span>
           <span class="monto">$13.137.855</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 18. GANANCIAS/PÉRDIDAS ═══ -->
+    <section class="slide" data-bg="18">
+      <div class="slide-inner">
+        <p class="eyebrow">17 — Balance del proyecto</p>
+        <h2>Ganancias<em>/Pérdidas</em></h2>
+        <div class="dos-tarjetas">
+          <div class="tarjeta">
+            <h3>📈 Ganancia pedagógica</h3>
+            <p>Documentar y dar a conocer las experiencias del enfoque STEM dentro de nuestra institución fortaleció nuestras habilidades de investigación, escritura, edición audiovisual y trabajo en equipo. Cada video, foto y publicación se convirtió en una lección aprendida haciendo, y en un archivo vivo que queda como legado para las próximas promociones.</p>
+          </div>
+          <div class="tarjeta">
+            <h3>🌱 Más que cifras</h3>
+            <p>No hubo pérdidas: hubo aprendizaje. Cada reto técnico se transformó en una oportunidad de mejora, y la verdadera ganancia fue visibilizar el talento de nuestros compañeros y profesores, dejando huella del primer enfoque STEM documentado en la historia de la Institución Educativa La Divina Pastora.</p>
+          </div>
         </div>
       </div>
     </section>
