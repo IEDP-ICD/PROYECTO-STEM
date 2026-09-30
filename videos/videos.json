@@ -1,30 +1,113 @@
 [
   {
-    "titulo": "Impresión 3D en acción — IEDP",
-    "categoria": "Impresión 3D",
-    "red": "TikTok",
-    "descripcion": "Proceso completo de impresión de una pieza en PLA usando la impresora 3D del colegio. Del diseño en Tinkercad a la pieza final.",
-    "tiktok_url": "https://www.tiktok.com/@usuario/video/PEGA_EL_ID_DEL_VIDEO_AQUI"
-  },
-  {
-    "titulo": "Cortadora Láser CO₂ — Proyecto de diseño",
-    "categoria": "Cortadora Láser",
-    "red": "TikTok",
-    "descripcion": "Demostración del uso de la cortadora láser CO₂ para fabricar piezas decorativas y funcionales en MDF.",
-    "tiktok_url": "https://www.tiktok.com/@usuario/video/PEGA_EL_ID_DEL_VIDEO_AQUI"
-  },
-  {
-    "titulo": "Feria de Ciencias 2025 — Registro completo",
-    "categoria": "Ferias",
-    "red": "Instagram",
-    "descripcion": "Registro en video de la feria de ciencias institucional con entrevistas a los estudiantes que presentaron sus proyectos.",
-    "instagram_url": "https://www.instagram.com/reel/PEGA_EL_ID_DEL_VIDEO_AQUI/"
-  },
-  {
     "titulo": "Proceso para cargue de filamento e impresión de figuras",
     "categoria": "Impresión 3D",
     "red": "TikTok",
     "descripcion": "Proceso para cargue de filamento e impresión de figuras.",
     "tiktok_url": "https://vt.tiktok.com/ZSqUyFm2e/"
+  },
+  {
+    "titulo": "Proyecto STEM — Ciencia, Creatividad e Innovación",
+    "categoria": "Equipo",
+    "red": "TikTok",
+    "descripcion": "Presentación del equipo del proyecto STEM de la Institución Educativa La Divina Pastora.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAwJoFX/",
+    "miniatura": "equipo-stem-laboratorio.jpg"
+  },
+  {
+    "titulo": "Semana de la Astronomía — Planetario Móvil",
+    "categoria": "Astronomía",
+    "red": "TikTok",
+    "descripcion": "Los estudiantes viven la experiencia del planetario móvil durante la Semana de la Astronomía.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAwenmL/",
+    "miniatura": "semana-astronomia-planetario.jpg"
+  },
+  {
+    "titulo": "Feria STEM 2026",
+    "categoria": "Ferias",
+    "red": "TikTok",
+    "descripcion": "Un recorrido por la Feria STEM 2026: innovación, ciencia y tecnología en La Divina Pastora, Cúcuta.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAwQpYj/",
+    "miniatura": "feria-stem-2026.jpg"
+  },
+  {
+    "titulo": "Explorando el mundo STEM",
+    "categoria": "STEM",
+    "red": "TikTok",
+    "descripcion": "Innovación, ciencia y tecnología: así exploramos el mundo STEM en nuestra institución.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAw92G7/",
+    "miniatura": "explorando-mundo-stem.jpg"
+  },
+  {
+    "titulo": "Unidos por la Educación",
+    "categoria": "Equipo",
+    "red": "TikTok",
+    "descripcion": "Talento que inspira: conoce a los estudiantes unidos por la educación en nuestra institución.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAwmJFv/",
+    "miniatura": "unidos-por-la-educacion.jpg"
+  },
+  {
+    "titulo": "Enfoque STEM en nuestra institución educativa",
+    "categoria": "STEM",
+    "red": "TikTok",
+    "descripcion": "Así se vive el enfoque STEM en la Institución Educativa La Divina Pastora, Cúcuta.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAK8oeQ/",
+    "miniatura": "enfoque-stem-institucion.jpg"
+  },
+  {
+    "titulo": "Proyecto de Carro Robótico",
+    "categoria": "Robótica",
+    "red": "TikTok",
+    "descripcion": "Innovación, tecnología y creatividad: el proyecto del carro robótico en acción.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAKHXKk/",
+    "miniatura": "carro-robotico.jpg"
+  },
+  {
+    "titulo": "Feria STEM 2025 — Entrevistas, proyectos, innovación",
+    "categoria": "Ferias",
+    "red": "TikTok",
+    "descripcion": "Registro en video de la Feria STEM 2025 con entrevistas y los proyectos presentados por los estudiantes.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAKxmSq/",
+    "miniatura": "feria-stem-2025.jpg"
+  },
+  {
+    "titulo": "Innovación que transforma",
+    "categoria": "STEM",
+    "red": "TikTok",
+    "descripcion": "Ciencia + Tecnología = Grandes Ideas: la innovación que transforma nuestro proyecto STEM.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAKpeds/",
+    "miniatura": "innovacion-que-transforma.jpg"
+  },
+  {
+    "titulo": "Equipo STEM en acción",
+    "categoria": "Equipo",
+    "red": "TikTok",
+    "descripcion": "Un vistazo al equipo del proyecto STEM trabajando en la institución.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAKTxtD/",
+    "miniatura": "equipo-stem-robotica.jpg"
+  },
+  {
+    "titulo": "Clase de efectos utilizados en Adobe After Effects",
+    "categoria": "Edición de Video",
+    "red": "TikTok",
+    "descripcion": "Efectos principales utilizados en Adobe After Effects: partículas, turbulence displace, glow, bloom, adjustment layer y CC Particle World.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAE5v1o/",
+    "miniatura": "clase-adobe-after-effects.jpg"
+  },
+  {
+    "titulo": "Clase STEM: Simulador de Física Gamificado",
+    "categoria": "Física",
+    "red": "TikTok",
+    "descripcion": "Aprender jugando es crear: descubre, explora y crea con el simulador de física gamificado.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAKLT6L/",
+    "miniatura": "simulador-fisica-gamificado.jpg"
+  },
+  {
+    "titulo": "Día Mundial del Agua",
+    "categoria": "Medio Ambiente",
+    "red": "TikTok",
+    "descripcion": "Cuidar el agua también es cuidar nuestro futuro: actividad del Día Mundial del Agua con grado 4°3, sede B.",
+    "tiktok_url": "https://vt.tiktok.com/ZSbAwoujA/",
+    "miniatura": "dia-mundial-del-agua.jpg"
   }
 ]

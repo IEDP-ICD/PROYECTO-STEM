@@ -858,7 +858,7 @@
     .video-miniatura-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
     }
 
@@ -1375,14 +1375,25 @@
            "descripcion": "Recorrido por los stands de la feria...",
            "instagram_url": "https://www.instagram.com/reel/CODIGO_DEL_VIDEO/"
          },
+         {
+           "titulo": "Semana de la Astronomía",
+           "categoria": "Astronomía",
+           "red": "TikTok",
+           "descripcion": "Planetario móvil en la institución...",
+           "tiktok_url": "https://vt.tiktok.com/CODIGO_DEL_VIDEO/",
+           "miniatura": "semana-astronomia-planetario.jpg"
+         },
          ...
        ]
-       Para TikTok, el código consulta la API pública oEmbed de TikTok
-       al cargar la página y reemplaza la miniatura y la descripción
-       por las reales del video (si TikTok no responde, se queda con
-       "descripcion"). Instagram ya no ofrece esa consulta pública sin
-       una cuenta de desarrollador de Meta, así que su ficha siempre
-       usa el título/descripción escritos aquí en el JSON.
+       "miniatura" es opcional: el nombre de una imagen dentro de
+       videos/. Si se da, esa imagen se muestra siempre como portada y
+       nunca se reemplaza. Si no se da, para TikTok el código consulta
+       la API pública oEmbed al cargar la página y reemplaza la
+       miniatura y la descripción por las reales del video (si TikTok
+       no responde, se queda con "descripcion"). Instagram ya no
+       ofrece esa consulta pública sin una cuenta de desarrollador de
+       Meta, así que su ficha siempre usa el título/descripción
+       escritos aquí en el JSON.
        ═══════════════════════════════════════════════════════════ -->
   <section class="seccion seccion-oscura" id="videos">
     <div class="contenedor">
@@ -1711,11 +1722,14 @@
           const red = v.red || (esTikTok ? 'TikTok' : 'Instagram');
           const icono = esTikTok ? '🎵' : '📸';
           const claseRed = esTikTok ? 'red-tiktok' : 'red-instagram';
+          const thumbHTML = v.miniatura
+            ? `<img id="video-thumb-${i}" src="videos/${escHtml(v.miniatura)}" alt="${escHtml(v.titulo)}" loading="lazy" />`
+            : `<div class="video-miniatura-placeholder ${claseRed}" id="video-thumb-${i}">${icono}</div>`;
 
           return `
             <div class="video-card">
               <a class="video-miniatura-wrap" href="${escHtml(url)}" target="_blank" rel="noopener noreferrer" aria-label="Ver en ${escHtml(red)}: ${escHtml(v.titulo)}">
-                <div class="video-miniatura-placeholder ${claseRed}" id="video-thumb-${i}">${icono}</div>
+                ${thumbHTML}
                 <div class="video-play-badge"><span class="video-play-icon">▶</span></div>
               </a>
               <div class="video-info">
@@ -1727,9 +1741,11 @@
           `;
         }).join('');
 
-        // TikTok sí tiene oEmbed público: trae miniatura y descripción reales
+        // TikTok sí tiene oEmbed público: trae la descripción real. Si ya
+        // hay una miniatura propia en el JSON (v.miniatura), se conserva
+        // esa imagen y solo se actualiza el texto de la descripción.
         videos.forEach((v, i) => {
-          if (v.tiktok_url) cargarDatosTikTok(v.tiktok_url, i);
+          if (v.tiktok_url) cargarDatosTikTok(v.tiktok_url, i, !!v.miniatura);
         });
 
       } catch (err) {
@@ -1750,20 +1766,22 @@
     así que sus fichas no intentan esta consulta.
     ══════════════════════════════════════════════════════════════
     */
-    async function cargarDatosTikTok(tiktokUrl, i) {
+    async function cargarDatosTikTok(tiktokUrl, i, tieneMiniaturaPropia) {
       try {
         const resp = await fetch(`https://www.tiktok.com/oembed?url=${encodeURIComponent(tiktokUrl)}`);
         if (!resp.ok) throw new Error('oEmbed de TikTok no disponible');
         const data = await resp.json();
 
-        const thumbEl = document.getElementById(`video-thumb-${i}`);
-        if (thumbEl && data.thumbnail_url) {
-          const img = document.createElement('img');
-          img.id = `video-thumb-${i}`;
-          img.src = data.thumbnail_url;
-          img.alt = data.title || 'Video de TikTok';
-          img.loading = 'lazy';
-          thumbEl.replaceWith(img);
+        if (!tieneMiniaturaPropia) {
+          const thumbEl = document.getElementById(`video-thumb-${i}`);
+          if (thumbEl && data.thumbnail_url) {
+            const img = document.createElement('img');
+            img.id = `video-thumb-${i}`;
+            img.src = data.thumbnail_url;
+            img.alt = data.title || 'Video de TikTok';
+            img.loading = 'lazy';
+            thumbEl.replaceWith(img);
+          }
         }
 
         const descEl = document.getElementById(`video-desc-${i}`);
