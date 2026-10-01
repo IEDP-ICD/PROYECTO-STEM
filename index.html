@@ -11,9 +11,6 @@
   ║  ├── img/                                                    ║
   ║  │   ├── logo.png             ← logo del proyecto STEM      ║
   ║  │   └── escudo.png           ← escudo de la institución    ║
-  ║  ├── proyectos/                                              ║
-  ║  │   ├── proyectos.json       ← lista de proyectos STEM     ║
-  ║  │   └── (imágenes de cada proyecto)                        ║
   ║  ├── galeria/                                                ║
   ║  │   ├── galeria.json         ← fotos de eventos y ferias   ║
   ║  │   └── (fotos JPG/PNG)                                     ║
@@ -595,124 +592,6 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       PROYECTOS STEM
-       Tarjetas de cada proyecto documentado
-       ═══════════════════════════════════════════════════════════ */
-    #proyectos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 24px;
-    }
-
-    /* Tarjeta de proyecto */
-    .proyecto-card {
-      background: var(--blanco);
-      border: 1px solid var(--gris-medio);
-      border-radius: var(--radio-lg);
-      overflow: hidden;
-      box-shadow: var(--sombra-suave);
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .proyecto-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--sombra-media);
-    }
-
-    /* Imagen del proyecto */
-    .proyecto-img {
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--azul-marino), var(--azul-claro));
-      position: relative;
-    }
-
-    .proyecto-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-
-    .proyecto-card:hover .proyecto-img img {
-      transform: scale(1.05);
-    }
-
-    /* Etiqueta de área (ej: Robótica, Impresión 3D) superpuesta en la imagen */
-    .proyecto-area-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--cyan);
-      color: var(--azul-marino);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-family: 'Space Grotesk', sans-serif;
-    }
-
-    /* Ícono del área si no hay imagen */
-    .proyecto-img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-    }
-
-    /* Cuerpo de la tarjeta */
-    .proyecto-body {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* Nombre del proyecto */
-    .proyecto-nombre {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--texto-oscuro);
-      line-height: 1.3;
-    }
-
-    /* Descripción del proyecto */
-    .proyecto-desc {
-      font-size: 0.88rem;
-      color: var(--gris-oscuro);
-      font-weight: 300;
-      flex: 1;
-      line-height: 1.65;
-    }
-
-    /* Pie de la tarjeta: año y grado */
-    .proyecto-footer {
-      display: flex;
-      gap: 8px;
-      padding-top: 12px;
-      border-top: 1px solid var(--gris-medio);
-      flex-wrap: wrap;
-    }
-
-    /* Etiqueta de dato (año, grado) */
-    .proyecto-tag {
-      background: var(--gris-fondo);
-      color: var(--gris-oscuro);
-      font-size: 0.72rem;
-      padding: 3px 10px;
-      border-radius: 100px;
-      font-weight: 500;
-    }
-
-    /* ═══════════════════════════════════════════════════════════
        GALERÍA DE FOTOS
        ═══════════════════════════════════════════════════════════ */
     /* Filtros de categoría de la galería */
@@ -1174,7 +1053,6 @@
       .contenedor { padding: 0 1rem; }
       .seccion { padding: 3.5rem 0; }
       .mision-vision-grid { grid-template-columns: 1fr; }
-      #proyectos-grid { grid-template-columns: 1fr; }
       #videos-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -1199,7 +1077,6 @@
 
     <!-- Links de navegación -->
     <ul class="nav-links">
-      <li><a href="#proyectos">Proyectos</a></li>
       <li><a href="#galeria">Galería</a></li>
       <li><a href="#videos">Videos</a></li>
       <li><a href="#nosotros">Equipo</a></li>
@@ -1241,7 +1118,7 @@
 
       <!-- Botones -->
       <div class="hero-ctas">
-        <a class="btn-cyan" href="#proyectos">Ver proyectos</a>
+        <a class="btn-cyan" href="#galeria">Ver galería</a>
         <a class="btn-ghost" href="#nosotros">Conócenos</a>
       </div>
 
@@ -1276,39 +1153,6 @@
       <div class="mision-vision-grid" id="mision-vision-contenido">
         <div class="skeleton sk-media"></div>
         <div class="skeleton sk-media"></div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════
-       SECCIÓN: PROYECTOS STEM DOCUMENTADOS
-       Archivo: proyectos/proyectos.json
-       Formato:
-       [
-         {
-           "nombre": "Robot seguidor de línea",
-           "area": "Robótica",
-           "descripcion": "Robot construido con Arduino que sigue una línea...",
-           "anio": "2025",
-           "grado": "10°",
-           "imagen": "robot-linea.jpg",
-           "icono": "🤖"
-         },
-         ...
-       ]
-       ═══════════════════════════════════════════════════════════ -->
-  <section class="seccion" id="proyectos">
-    <div class="contenedor">
-      <div class="seccion-header">
-        <p class="seccion-eyebrow">Lo que hemos construido</p>
-        <h2>Proyectos STEM</h2>
-        <p>Robótica, electrónica, impresión 3D, corte láser y más — todo hecho aquí</p>
-      </div>
-      <div id="proyectos-grid">
-        <div class="skeleton sk-alta"></div>
-        <div class="skeleton sk-alta"></div>
-        <div class="skeleton sk-alta"></div>
       </div>
     </div>
   </section>
@@ -1472,7 +1316,6 @@
     window.addEventListener('load', function () {
       Promise.allSettled([
         cargarEquipoYMision(),
-        cargarProyectos(),
         cargarGaleria(),
         cargarVideos()
       ]);
@@ -1564,56 +1407,6 @@
         `;
         document.getElementById('sobre-nosotros-texto').textContent = 'Información próximamente.';
         document.getElementById('equipo-grid').innerHTML = mensajeVacio('👩‍💻', 'Agrega el equipo', 'Crea equipo/equipo.json');
-        console.warn(err.message);
-      }
-    }
-
-
-    /*
-    ══════════════════════════════════════════════════════════════
-    FUNCIÓN: cargarProyectos
-    Lee proyectos/proyectos.json
-    ══════════════════════════════════════════════════════════════
-    */
-    async function cargarProyectos() {
-      const grid = document.getElementById('proyectos-grid');
-      try {
-        const resp = await fetch('proyectos/proyectos.json');
-        if (!resp.ok) throw new Error('proyectos.json no encontrado');
-        const proyectos = await resp.json();
-
-        if (!proyectos || proyectos.length === 0) {
-          grid.innerHTML = mensajeVacio('🔬', 'Sin proyectos aún', 'Agrega proyectos en proyectos/proyectos.json');
-          return;
-        }
-
-        grid.innerHTML = proyectos.map(p => {
-          // Si tiene imagen, mostrarla; si no, usar el ícono del área
-          const imgHTML = p.imagen
-            ? `<img src="proyectos/${p.imagen}" alt="${escHtml(p.nombre)}" loading="lazy" />`
-            : `<div class="proyecto-img-placeholder">${p.icono || '🔬'}</div>`;
-
-          return `
-            <div class="proyecto-card">
-              <div class="proyecto-img">
-                ${imgHTML}
-                <span class="proyecto-area-badge">${escHtml(p.area || 'STEM')}</span>
-              </div>
-              <div class="proyecto-body">
-                <div class="proyecto-nombre">${escHtml(p.nombre)}</div>
-                <p class="proyecto-desc">${escHtml(p.descripcion)}</p>
-                <div class="proyecto-footer">
-                  ${p.anio ? `<span class="proyecto-tag">📅 ${escHtml(p.anio)}</span>` : ''}
-                  ${p.grado ? `<span class="proyecto-tag">🎓 Grado ${escHtml(p.grado)}</span>` : ''}
-                  ${p.area ? `<span class="proyecto-tag">${escHtml(p.area)}</span>` : ''}
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('');
-
-      } catch (err) {
-        grid.innerHTML = mensajeVacio('🔬', 'Sin proyectos aún', 'Crea proyectos/proyectos.json para documentar los proyectos.');
         console.warn(err.message);
       }
     }

@@ -138,5 +138,50 @@
     "nombre": "Feria STEM - Proyectos de los estudiantes",
     "categoria": "Ferias",
     "archivo": "feria-stem-collage.jpg"
+  },
+  {
+    "nombre": "Armando un rompecabezas de animales en equipo",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-rompecabezas-animales.jpg"
+  },
+  {
+    "nombre": "Rompecabezas abstracto en construcción",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-rompecabezas-abstracto.jpg"
+  },
+  {
+    "nombre": "Trabajo en equipo armando un rompecabezas",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-equipo-armando.jpg"
+  },
+  {
+    "nombre": "Rompecabezas abstracto casi terminado",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-rompecabezas-casi-listo.jpg"
+  },
+  {
+    "nombre": "Grupo con el rompecabezas de animales",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-grupo-1.jpg"
+  },
+  {
+    "nombre": "Equipo posando con su rompecabezas",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-grupo-2.jpg"
+  },
+  {
+    "nombre": "Clase mostrando el rompecabezas terminado",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-grupo-3.jpg"
+  },
+  {
+    "nombre": "Armando un rompecabezas en el piso",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-piso.jpg"
+  },
+  {
+    "nombre": "Terminando el rompecabezas de animales",
+    "categoria": "Clases STEM",
+    "archivo": "clase-stem-rompecabezas-terminando.jpg"
   }
 ]
